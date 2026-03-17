@@ -1,0 +1,33 @@
+---
+const links = [
+  { label: "Experiencia", href: "#experiencia" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Educación", href: "#educacion" },
+];
+---
+
+<nav class="fixed top-0 z-50 w-full border-b border-white/10 bg-zinc-950/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="#" class="flex items-center gap-2 text-white">
+      <svg viewBox="0 0 16 16" fill="none" class="h-5 w-5">
+        <polyline
+          points="2,13 8,3 14,13"
+          stroke="#7B2FFF"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span class="text-muted2 font-mono text-xs"><b class="text-text">mati</b>sanabria.me</span>
+    </a>
+    <ul class="flex gap-6">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="text-sm text-zinc-400 hover:text-white">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
