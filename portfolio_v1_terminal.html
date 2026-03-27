@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Unbounded:wght@700;900&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0D1117;
+  --surface:#161B22;
+  --line:#21262D;
+  --line2:#30363D;
+  --text:#E6EDF3;
+  --muted:#7D8590;
+  --muted2:#484F58;
+  --green:#3FB950;
+  --spring:cubic-bezier(0.34,1.56,0.64,1);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;}
+
+/* ── NAV ── */
+nav{
+  border-bottom:1px solid var(--line);
+  padding:0 48px;
+  height:52px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;
+  background:rgba(13,17,23,0.92);
+  backdrop-filter:blur(8px);
+  z-index:100;
+}
+
+.nav-logo{
+  font-family:'DM Mono',monospace;
+  font-size:13px;font-weight:500;
+  color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:6px;
+}
+.nav-logo span{color:var(--green);}
+
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{
+  font-size:11px;letter-spacing:1px;
+  color:var(--muted);text-decoration:none;
+  padding:6px 16px;
+  transition:color .15s;
+}
+.nav-links a:hover{color:var(--green);}
+
+/* ── LAYOUT ── */
+.container{max-width:860px;margin:0 auto;padding:0 48px;}
+
+/* ── HERO ── */
+.hero{padding:80px 0 72px;}
+
+.hero-prompt{
+  font-size:11px;letter-spacing:1px;
+  color:var(--muted);margin-bottom:24px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-prompt::before{content:'$';color:var(--green);}
+
+.name{
+  font-family:'Unbounded',sans-serif;
+  font-weight:900;
+  font-size:clamp(48px,8vw,84px);
+  letter-spacing:-2px;
+  line-height:.88;
+  color:var(--text);
+}
+.name-last{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:1px var(--line2);
+  transition:-webkit-text-stroke-color .4s;
+}
+.name:hover .name-last{-webkit-text-stroke-color:var(--text);}
+
+.cursor{
+  display:inline-block;
+  width:3px;height:.85em;
+  background:var(--green);
+  margin-left:4px;
+  vertical-align:middle;
+  animation:blink .8s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+.hero-sub{
+  font-size:11px;letter-spacing:2px;
+  color:var(--green);
+  margin-top:24px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-sub::before{content:'›';}
+
+.hero-bio{
+  font-size:13px;line-height:1.9;
+  color:var(--muted);
+  margin-top:20px;
+  max-width:520px;
+  border-left:2px solid var(--line);
+  padding-left:16px;
+}
+.hero-bio strong{color:var(--text);font-weight:500;}
+
+.stack{margin-top:28px;display:flex;flex-wrap:wrap;gap:6px;}
+.stack-item{
+  font-size:10px;letter-spacing:1px;
+  color:var(--muted);
+  border:1px solid var(--line2);
+  padding:4px 10px;
+  transition:color .15s,border-color .15s,transform .2s var(--spring);
+  cursor:default;
+}
+.stack-item:hover{color:var(--green);border-color:var(--green);transform:translateY(-2px);}
+
+.hero-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;}
+.btn{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:1px;
+  padding:10px 20px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .2s var(--spring),background .15s,color .15s,border-color .15s;
+  cursor:pointer;border:none;
+}
+.btn-primary{background:var(--green);color:var(--bg);}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);filter:brightness(1.1);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--line2);}
+.btn-ghost:hover{transform:translateY(-2px);color:var(--text);border-color:var(--muted);}
+
+/* ── SECCIÓN GENÉRICA ── */
+.section{padding:64px 0;border-top:1px solid var(--line);}
+
+.section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:40px;
+}
+.section-label{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted2);
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{color:var(--green);}
+.section-count{font-size:10px;letter-spacing:2px;color:var(--muted2);}
+
+/* ── PROYECTOS ── */
+.proj-grid{display:flex;flex-direction:column;gap:2px;}
+
+.proj{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;gap:24px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  transition:background .15s;
+  position:relative;
+}
+.proj:last-child{border-bottom:none;}
+
+.proj::before{
+  content:'';position:absolute;left:-48px;top:0;bottom:0;width:2px;
+  background:var(--green);transform:scaleY(0);transform-origin:bottom;
+  transition:transform .25s var(--ease);
+}
+.proj:hover::before{transform:scaleY(1);}
+
+.proj-info{display:flex;flex-direction:column;gap:5px;}
+.proj-name{
+  font-family:'Unbounded',sans-serif;
+  font-weight:700;font-size:15px;letter-spacing:-0.3px;
+  color:var(--text);
+  transition:color .15s;
+}
+.proj:hover .proj-name{color:var(--green);}
+.proj-tech{font-size:10px;letter-spacing:1px;color:var(--muted);}
+.proj-desc{font-size:11px;line-height:1.7;color:var(--muted2);max-width:480px;margin-top:2px;}
+
+.proj-right{display:flex;align-items:center;gap:16px;}
+.proj-tag{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted2);border:1px solid var(--line);padding:3px 8px;
+  transition:color .15s,border-color .15s;white-space:nowrap;
+}
+.proj:hover .proj-tag{color:var(--green);border-color:var(--green);}
+.proj-arr{font-size:14px;color:var(--muted2);transition:transform .2s var(--spring),color .15s;}
+.proj:hover .proj-arr{transform:translate(2px,-2px);color:var(--green);}
+
+/* Screenshot placeholder */
+.proj-img{
+  width:100%;
+  height:160px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  margin-top:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;letter-spacing:2px;color:var(--muted2);
+  overflow:hidden;
+}
+
+/* ── EXPERIENCIA ── */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:24px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+.exp:last-child{border-bottom:none;}
+.exp-date{font-size:10px;letter-spacing:1px;color:var(--muted2);padding-top:2px;line-height:1.6;}
+.exp-date span{display:block;font-size:9px;color:var(--muted2);opacity:.5;}
+.exp-content{display:flex;flex-direction:column;gap:4px;}
+.exp-role{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:var(--text);}
+.exp-where{font-size:11px;color:var(--muted);margin-top:2px;}
+.exp-desc{font-size:11px;line-height:1.75;color:var(--muted2);margin-top:8px;max-width:480px;}
+.exp-tag{
+  display:inline-block;margin-top:8px;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);border:1px solid var(--line);padding:2px 8px;
+}
+
+/* ── CONTACTO ── */
+.contact-grid{display:flex;flex-direction:column;gap:2px;}
+.contact-link{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;
+  transition:padding-left .2s var(--spring);
+}
+.contact-link:last-child{border-bottom:none;}
+.contact-link:hover{padding-left:8px;}
+.contact-name{font-size:13px;font-weight:500;color:var(--text);}
+.contact-val{font-size:11px;color:var(--muted);transition:color .15s;}
+.contact-link:hover .contact-val{color:var(--green);}
+.contact-arr{font-size:12px;color:var(--muted2);transition:transform .2s var(--spring),color .15s;}
+.contact-link:hover .contact-arr{transform:translate(2px,-2px);color:var(--green);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--line);
+  padding:20px 0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-l{font-size:10px;letter-spacing:1px;color:var(--muted2);}
+.footer-r{font-size:10px;letter-spacing:1px;color:var(--muted2);}
+.footer-r span{color:var(--green);}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .container{padding:0 24px;}
+  nav{padding:0 24px;}
+  .hero{padding:48px 0 56px;}
+  .proj{grid-template-columns:1fr;}
+  .proj-right{justify-content:flex-end;}
+  .exp{grid-template-columns:1fr;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><span>›</span> matisanabria.me</a>
+  <ul class="nav-links">
+    <li><a href="#proyectos">proyectos</a></li>
+    <li><a href="#experiencia">experiencia</a></li>
+    <li><a href="#contacto">contacto</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-prompt">whoami</p>
+    <h1 class="name">
+      MATI<span class="cursor"></span><br>
+      <span class="name-last">SANABRIA</span>
+    </h1>
+    <p class="hero-sub">dev freelance · encarnación, py</p>
+    <p class="hero-bio">
+      estudiante de <strong>ingeniería en informática</strong> construyendo
+      cosas reales para clientes reales. webs, apis y apps de escritorio —
+      todo en producción. 19 años, sin excusas.
+    </p>
+    <div class="stack">
+      <span class="stack-item">Laravel</span>
+      <span class="stack-item">Astro</span>
+      <span class="stack-item">React</span>
+      <span class="stack-item">Java / JavaFX</span>
+      <span class="stack-item">Hetzner VPS</span>
+      <span class="stack-item">Coolify</span>
+      <span class="stack-item">Cloudflare</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#proyectos">ver proyectos →</a>
+      <a class="btn btn-ghost" href="#contacto">contacto</a>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section class="section" id="proyectos">
+    <div class="section-header">
+      <span class="section-label">proyectos</span>
+      <span class="section-count">03</span>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj">
+        <div class="proj-info">
+          <span class="proj-name">OnBarber</span>
+          <span class="proj-tech">Laravel · Astro · React · JavaFX · Hetzner</span>
+          <span class="proj-desc">plataforma de turnos para barberías. api rest, frontend con islands, app de escritorio integrada. en producción en encarnación.</span>
+          <div class="proj-img">[ screenshot ]</div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-tag">web + desktop</span>
+          <span class="proj-arr">↗</span>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-info">
+          <span class="proj-name">Barbman</span>
+          <span class="proj-tech">Java 17 · JavaFX · SQLite · Hibernate</span>
+          <span class="proj-desc">sistema de gestión para barberías. dark theme, caja registradora, clientes activos en paraguay.</span>
+          <div class="proj-img">[ screenshot ]</div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-tag">desktop app</span>
+          <span class="proj-arr">↗</span>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-info">
+          <span class="proj-name">POS Diego</span>
+          <span class="proj-tech">CodeIgniter 4 · MySQL · Cloudflare Tunnel</span>
+          <span class="proj-desc">punto de venta para cliente en asunción. acceso remoto via cloudflare tunnel.</span>
+          <div class="proj-img">[ screenshot ]</div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-tag">pos system</span>
+          <span class="proj-arr">↗</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section class="section" id="experiencia">
+    <div class="section-header">
+      <span class="section-label">experiencia</span>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp">
+        <div class="exp-date">2024 —<span>en curso</span></div>
+        <div class="exp-content">
+          <span class="exp-role">fullstack dev</span>
+          <span class="exp-where">OnBarber · Kevin, Encarnación</span>
+          <p class="exp-desc">plataforma completa de turnos para barberías. laravel api, astro frontend, javafx desktop. hetzner vps con coolify y cloudflare.</p>
+          <span class="exp-tag">producción</span>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-date">2023 —<span>entregado</span></div>
+        <div class="exp-content">
+          <span class="exp-role">desktop dev</span>
+          <span class="exp-where">Barbman · Kevin & Rubio, PY</span>
+          <p class="exp-desc">sistema de gestión para barberías con java 17 y javafx. migrado a hibernate + spring data jpa.</p>
+          <span class="exp-tag">producción</span>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-date">2023 —<span>entregado</span></div>
+        <div class="exp-content">
+          <span class="exp-role">backend dev</span>
+          <span class="exp-where">POS · Diego, Asunción</span>
+          <p class="exp-desc">sistema de punto de venta con acceso remoto via cloudflare tunnel.</p>
+          <span class="exp-tag">producción</span>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-date">2024 —<span>en curso</span></div>
+        <div class="exp-content">
+          <span class="exp-role">estudiante</span>
+          <span class="exp-where">Ing. Informática · UC "NSA" · Encarnación</span>
+          <p class="exp-desc">cursando ingeniería en informática mientras construyo proyectos reales en paralelo.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <div class="section-header">
+      <span class="section-label">contacto</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-link" href="mailto:hola@matisanabria.me">
+        <span class="contact-name">email</span>
+        <span class="contact-val">hola@matisanabria.me</span>
+        <span class="contact-arr">↗</span>
+      </a>
+      <a class="contact-link" href="https://github.com/matisanabria" target="_blank">
+        <span class="contact-name">github</span>
+        <span class="contact-val">github.com/matisanabria</span>
+        <span class="contact-arr">↗</span>
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/matisanabria" target="_blank">
+        <span class="contact-name">linkedin</span>
+        <span class="contact-val">linkedin.com/in/matisanabria</span>
+        <span class="contact-arr">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-l">© 2025 mati sanabria</span>
+    <span class="footer-r">25°26'S 57°35'W · <span>encarnación py</span></span>
+  </footer>
+
+</div>
+
+</body>
+</html>

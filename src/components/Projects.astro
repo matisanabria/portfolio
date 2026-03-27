@@ -1,41 +1,126 @@
 ---
-const projects = [
+interface Project {
+  num: string;
+  name: string;
+  tech: string;
+  desc: string;
+  tag: string;
+  year: string;
+  img: string;
+  url: string;
+  span: "full" | "half";
+}
+
+const projects: Project[] = [
   {
-    title: "Proyecto 1",
-    description: "Breve descripción del proyecto y tecnologías usadas.",
-    tags: ["Astro", "Tailwind"],
-    link: "#",
+    num: "01",
+    name: "Web para OnBarber",
+    tech: "Laravel · Astro · React · Hetzner",
+    desc: "Landing page y plataforma de turnos para barbería. API REST, frontend con islands. En producción en Encarnación.",
+    tag: "LANDING PAGE + PLATFORM",
+    year: "2026",
+    img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/onbarber-image.webp",
+    url: "https://github.com/matisanabria/onbarber-web",
+    span: "full",
   },
   {
-    title: "Proyecto 2",
-    description: "Breve descripción del proyecto y tecnologías usadas.",
-    tags: ["React", "Node.js"],
-    link: "#",
+    num: "02",
+    name: "Barbman",
+    tech: "Java 17 · JavaFX · SQLite · Hibernate",
+    desc: "Sistema de gestión para barberías. Punto de venta, administración de clientes, stock y reportes. En uso en Encarnación desde 2025.",
+    tag: "DESKTOP APP",
+    year: "2025",
+    img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/barbman-image.webp",
+    url: "https://github.com/matisanabria/barbman",
+    span: "half",
   },
   {
-    title: "Proyecto 3",
-    description: "Breve descripción del proyecto y tecnologías usadas.",
-    tags: ["TypeScript", "PostgreSQL"],
-    link: "#",
+    num: "03",
+    name: "POS MSystem",
+    tech: "CodeIgniter 4 · MySQL · Cloudflare Tunnel",
+    desc: "Punto de venta para cliente en Asunción. Basado en Open Source Point of Sale y adaptado a sus necesidades.",
+    tag: "POS SYSTEM",
+    year: "2026",
+    img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/msystem-image.webp",
+    url: "https://github.com/matisanabria/msystem",
+    span: "half",
   },
 ];
 ---
 
-<section id="proyectos" class="px-6 py-24">
-  <div class="mx-auto max-w-5xl">
-    <h2 class="mb-12 text-3xl font-bold text-white">Proyectos</h2>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((project) => (
-        <a href={project.link} class="group rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-violet-500/50">
-          <h3 class="text-lg font-semibold text-white">{project.title}</h3>
-          <p class="mt-2 text-sm text-zinc-400">{project.description}</p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-300">{tag}</span>
-            ))}
+<section class="relative z-[1] border-t border-line py-20" id="proyectos">
+  <div class="max-w-[960px] mx-auto px-6 md:px-12">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between mb-14">
+      <div class="flex items-center gap-4">
+        <span class="w-8 h-px bg-accent"></span>
+        <span class="font-display text-xs font-bold tracking-wider uppercase text-text">Proyectos</span>
+      </div>
+      <span class="font-mono text-[10px] tracking-wider text-muted2">
+        {String(projects.length).padStart(2, "0")} proyectos
+      </span>
+    </header>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      {projects.map((p) => (
+        <a
+          href={p.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={[
+            "group relative rounded-xl border border-line bg-surface/50 overflow-hidden cursor-pointer transition-all duration-300 hover:border-line2 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] no-underline",
+            p.span === "full" ? "md:col-span-2" : "",
+          ]}
+          style="transition-timing-function: var(--ease-spring);"
+        >
+          <!-- Screenshot -->
+          <div class:list={[
+            "w-full overflow-hidden bg-bg",
+            p.span === "full" ? "aspect-[2.2/1]" : "aspect-video",
+          ]}>
+            <img
+              src={p.img}
+              alt={`Screenshot de ${p.name}`}
+              loading="lazy"
+              decoding="async"
+              width="1728"
+              height="972"
+              class="w-full h-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02]"
+            />
+          </div>
+
+          <!-- Info -->
+          <div class="p-5 flex flex-col gap-2.5">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-display font-bold text-base tracking-tight text-text transition-colors duration-200 group-hover:text-accent">
+                {p.name}
+              </h3>
+              <div class="flex items-center gap-2 shrink-0">
+                <span class="font-mono text-[9px] tracking-[1.5px] text-muted2 border border-line px-2 py-0.5 rounded-sm transition-all duration-200 group-hover:text-accent group-hover:border-accent/20">
+                  {p.tag}
+                </span>
+                <span class="font-mono text-[10px] text-muted2">{p.year}</span>
+              </div>
+            </div>
+
+            <p class="font-mono text-[11px] leading-[1.75] text-muted">{p.desc}</p>
+
+            <div class="flex items-center justify-between gap-3 pt-0.5">
+              <span class="font-mono text-[10px] tracking-wide text-muted2">{p.tech}</span>
+              <svg
+                class="shrink-0 text-muted2 transition-all duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                style="transition-timing-function: var(--ease-spring);"
+                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </div>
           </div>
         </a>
       ))}
     </div>
+
   </div>
 </section>

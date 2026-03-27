@@ -1,0 +1,55 @@
+---
+const contacts = [
+  { label: "Email", value: "contacto@matisanabria.me", href: "mailto:contacto@matisanabria.me" },
+  { label: "GitHub", value: "matisanabria", href: "https://github.com/matisanabria" },
+  { label: "LinkedIn", value: "Matías Sanabria Fernández", href: "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" },
+];
+---
+
+<section class="relative z-[1] border-t border-line py-20" id="contacto">
+  <div class="max-w-[960px] mx-auto px-6 md:px-12">
+
+    <!-- Header -->
+    <header class="flex items-center mb-14">
+      <div class="flex items-center gap-4">
+        <span class="w-8 h-px bg-accent"></span>
+        <span class="font-display text-xs font-bold tracking-wider uppercase text-text">Contacto</span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+
+      <!-- Title -->
+      <h2 class="font-display font-bold leading-[1.05] tracking-[-2px] text-text" style="font-size: clamp(32px, 5vw, 52px);">
+        Trabajemos<br />juntos<span class="text-accent">.</span>
+      </h2>
+
+      <!-- Links -->
+      <div class="flex flex-col">
+        {contacts.map((c) => (
+          <a
+            href={c.href}
+            target={c.href.startsWith("mailto") ? undefined : "_blank"}
+            rel={c.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+            class="group grid grid-cols-[80px_1fr_20px] md:grid-cols-[80px_1fr_20px] items-center gap-4 py-5 border-b border-line no-underline transition-all duration-200 last:border-b-0 hover:pl-2"
+            style="transition-timing-function: var(--ease-spring);"
+          >
+            <span class="font-mono text-[10px] tracking-[1.5px] uppercase text-muted2 hidden sm:block">{c.label}</span>
+            <span class="font-mono text-[13px] font-medium text-text transition-colors duration-200 group-hover:text-accent col-span-1 sm:col-span-1">
+              {c.value}
+            </span>
+            <svg
+              class="text-muted2 transition-all duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              style="transition-timing-function: var(--ease-spring);"
+              width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

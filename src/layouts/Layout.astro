@@ -1,23 +1,48 @@
 ---
-import '../styles/global.css';
+import "../assets/app.css";
+
 interface Props {
-  title?: string;
+  title: string;
+  description?: string;
+  bare?: boolean;
 }
 
-const { title = "Mati Sanabria – Portfolio" } = Astro.props;
+const {
+  title,
+  description = "dev freelance · encarnación, py",
+  bare = false,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32"/> <!-- Favicon tradicional -->
+		<link rel="icon" type="image/png" href="/favicon.svg" sizes="512x512" /> <!-- Para Android -->
+		<link rel="apple-touch-icon" href="/favicon.svg" /> <!-- Para iOS -->
+		<link rel="preconnect" href="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev" crossorigin />
+		<link rel="preload" href="/fonts/DMMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/Unbounded-Bold.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content="Mati Sanabria - Portfolio" />
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content="es_PY" />
+		<meta property="og:url" content="https://matisanabria.me" />
+		<meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Mati Sanabria - Portfolio" />
   </head>
   <body>
-    <div class="bg-grid"></div>
     <slot />
   </body>
 </html>

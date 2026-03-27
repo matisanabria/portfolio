@@ -1,32 +1,86 @@
 ---
-const jobs = [
+interface Exp {
+  period: string;
+  role: string;
+  company: string;
+  location: string;
+  desc: string;
+  active: boolean;
+}
+
+const experience: Exp[] = [
   {
-    role: "Full Stack Developer",
-    company: "Empresa",
-    period: "2024 – Presente",
-    description: "Descripción del rol y responsabilidades principales.",
+    period: "Presente",
+    role: "Fullstack Developer",
+    company: "Freelance",
+    location: "Home Office",
+    desc: "Diseño y desarrollo de soluciones a medida para clientes locales. Desde landing pages hasta sistemas de gestión completos.",
+    active: true,
   },
   {
-    role: "Frontend Developer",
-    company: "Otra Empresa",
-    period: "2023 – 2024",
-    description: "Descripción del rol y responsabilidades principales.",
-  },
+    period: "Abril 2024 — Enero 2026",
+    role: "Técnico informático",
+    company: "MX Informática",
+    location: "Encarnación, Paraguay",
+    desc: "Soporte técnico a usuarios y empresas, de manera presencial y remota. Diagnóstico y reparación de hardware, mantenimiento preventivo y correctivo de equipos, instalación y configuración de sistemas operativos y software en general.",
+    active: false,
+  }
 ];
 ---
 
-<section id="experiencia" class="px-6 py-24">
-  <div class="mx-auto max-w-5xl">
-    <h2 class="mb-12 text-3xl font-bold text-white">Experiencia</h2>
-    <div class="space-y-10">
-      {jobs.map((job) => (
-        <div class="border-l-2 border-zinc-800 pl-8">
-          <p class="text-sm text-zinc-500">{job.period}</p>
-          <h3 class="mt-1 text-xl font-semibold text-white">{job.role}</h3>
-          <p class="text-violet-400">{job.company}</p>
-          <p class="mt-3 text-zinc-400">{job.description}</p>
+<section class="relative z-[1] border-t border-line py-20" id="experiencia">
+  <div class="max-w-[960px] mx-auto px-6 md:px-12">
+
+    <!-- Header -->
+    <header class="flex items-center mb-14">
+      <div class="flex items-center gap-4">
+        <span class="w-8 h-px bg-accent"></span>
+        <span class="font-display text-xs font-bold tracking-wider uppercase text-text">Experiencia</span>
+      </div>
+    </header>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      {experience.map((e) => (
+        <div
+          class="group relative rounded-xl border border-line bg-surface/50 p-6 flex flex-col gap-4 transition-all duration-300 hover:border-line2 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+          style="transition-timing-function: var(--ease-spring);"
+        >
+          {/* Status + period */}
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              {e.active && (
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" style="box-shadow: 0 0 8px var(--color-accent);"></span>
+              )}
+              <span class:list={[
+                "font-mono text-[10px] tracking-wider uppercase",
+                e.active ? "text-accent" : "text-muted2",
+              ]}>
+                {e.period}
+              </span>
+            </div>
+            <span class="font-mono text-[10px] text-muted2/60">{e.location}</span>
+          </div>
+
+          {/* Role + company */}
+          <div class="flex flex-col gap-1">
+            <h4 class="font-display font-bold text-base tracking-tight text-text transition-colors duration-200 group-hover:text-accent">
+              {e.role}
+            </h4>
+            <span class="font-mono text-xs text-accent/60">{e.company}</span>
+          </div>
+
+          {/* Description */}
+          <p class="font-mono text-[11px] leading-[1.85] text-muted">{e.desc}</p>
+
+          {/* Decorative corner accent */}
+          <div class="absolute top-0 right-0 w-12 h-12 overflow-hidden rounded-tr-xl">
+            <div class="absolute top-0 right-0 w-px h-6 bg-line2 transition-colors duration-200 group-hover:bg-accent/30"></div>
+            <div class="absolute top-0 right-0 h-px w-6 bg-line2 transition-colors duration-200 group-hover:bg-accent/30"></div>
+          </div>
         </div>
       ))}
     </div>
+
   </div>
 </section>

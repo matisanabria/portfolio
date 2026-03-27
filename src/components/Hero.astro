@@ -1,16 +1,74 @@
-<section class="flex min-h-screen items-center px-6 pt-20">
-  <div class="mx-auto max-w-5xl">
-    <p class="mb-4 text-sm font-medium tracking-wider text-violet-400 uppercase">Hola, soy</p>
-    <h1 class="text-5xl font-bold text-white sm:text-6xl">Mati Sanabria</h1>
-    <p class="mt-6 max-w-xl text-lg text-zinc-400">
-      Desarrollador web. Construyo experiencias digitales modernas, rápidas y accesibles.
+---
+const stack = [
+  "Laravel", "Astro", "React", "Docker", "Git", "Cloudflare",
+];
+
+const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
+---
+
+<section class="relative flex items-center min-h-0 md:min-h-[calc(100vh-56px)]">
+  <div class="max-w-[960px] w-full mx-auto px-6 md:px-12 py-10 md:py-0 flex flex-col">
+
+    <!-- Tag -->
+    <div class="mb-5 md:mb-7 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
+      <span class="font-mono text-xs tracking-wider text-accent px-3.5 py-1.5 rounded bg-accent/5 border border-accent/10">
+        $ whoami
+      </span>
+    </div>
+
+    <!-- Name -->
+    <h1
+      class="font-display font-bold leading-[0.92] tracking-[-2px] md:tracking-[-3px] mb-6 opacity-0 animate-fade-up"
+      style="font-size: clamp(48px, 10vw, 110px); animation-delay: 0.3s;"
+    >
+      <span class="block text-text">MATI</span>
+      <span class="block text-muted2">SANABRIA</span>
+    </h1>
+
+    <!-- Role -->
+    <div class="flex items-center gap-3 mb-5 opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
+      <p class="font-mono text-[13px] text-text font-medium">Web Developer</p>
+      <span class="w-1 h-1 rounded-full bg-muted2"></span>
+      <p class="font-mono text-xs text-muted">Encarnación, PY</p>
+    </div>
+
+    <!-- Bio -->
+    <p class="font-mono text-[13px] leading-[1.85] text-muted max-w-[480px] mb-5 md:mb-7 opacity-0 animate-fade-up" style="animation-delay: 0.5s;">
+      Estudiante de <em class="not-italic font-medium text-text">ingeniería en informática</em>, 19 años.
+      <br class="hidden md:inline" />
+      Construyo cosas reales para clientes reales — webs, APIs
+      <br class="hidden md:inline" />
+      y apps de escritorio, todo en producción.
     </p>
-    <div class="mt-10 flex gap-4">
-      <a href="#proyectos" class="rounded-lg bg-violet-600 px-6 py-3 text-sm font-medium text-white hover:bg-violet-500">
-        Ver proyectos
+
+    <!-- Stack -->
+    <div class="flex flex-wrap gap-1.5 mb-6 md:mb-9 opacity-0 animate-fade-up" style="animation-delay: 0.6s;">
+      {stack.map((s) => (
+        <span class="font-mono text-[10px] tracking-wider text-muted border border-line2 px-3 py-1.5 rounded cursor-default transition-all duration-200 hover:text-accent hover:border-accent hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(180,247,78,0.08)]" style="transition-timing-function: var(--ease-spring);">
+          {s}
+        </span>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 flex-wrap opacity-0 animate-fade-up" style="animation-delay: 0.7s;">
+      <a
+        href="#proyectos"
+        class="font-mono text-xs tracking-wide px-6 py-3 bg-accent text-bg no-underline rounded-md inline-flex items-center gap-2 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(180,247,78,0.2)]"
+        style="transition-timing-function: var(--ease-spring);"
+      >
+        <span>Ver proyectos</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
       </a>
-      <a href="#contacto" class="rounded-lg border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-300 hover:border-zinc-500">
-        Contacto
+      <a
+        href={cvUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs tracking-wide px-6 py-3 bg-transparent text-muted no-underline border border-line2 rounded-md inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:text-text hover:border-muted"
+        style="transition-timing-function: var(--ease-spring);"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar CV
       </a>
     </div>
   </div>

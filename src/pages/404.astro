@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404 - señal perdida" bare>
+  <main class="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden py-16 sm:py-0">
+
+    <!-- Scan lines overlay -->
+    <div class="scanlines"></div>
+
+
+    <!-- Coordenadas decorativas -->
+    <p class="absolute top-5 left-12 text-[8px] tracking-[2px] text-[var(--color-muted)] opacity-30 hidden sm:block leading-relaxed">
+      SYS://MATISANABRIA.ME<br/>
+      REQ: failed<br/>
+      STATUS: <span class="text-[var(--color-accent)]">lost</span>
+    </p>
+
+    <p class="absolute bottom-5 right-12 text-[8px] tracking-[2px] text-[var(--color-muted)] opacity-30 hidden sm:block text-right leading-relaxed">
+      27°20'S · 55°52'W<br/>
+      ERR_CODE: <span class="text-[var(--color-accent)]">0x194</span><br/>
+      RESPONSE: null
+    </p>
+
+    <!-- Wireframe torus -->
+    <div class="torus-container">
+      <div class="torus">
+        {Array.from({length: 16}).map((_, i) => (
+          <div class="torus__ring" style={`--i: ${i};`}></div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contenido central -->
+    <div class="relative z-10 flex flex-col items-center gap-4 sm:gap-6 text-center px-4 sm:px-6">
+
+      <!-- 404 badge -->
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-px bg-[var(--color-line2)]"></span>
+        <span class="text-[8px] sm:text-[10px] tracking-[4px] sm:tracking-[6px] uppercase font-[var(--font-display)] font-bold text-[var(--color-accent)]">error 404</span>
+        <span class="w-6 h-px bg-[var(--color-line2)]"></span>
+      </div>
+
+      <!-- Mensaje principal -->
+      <h1
+        class="font-[var(--font-display)] font-bold tracking-tight"
+        style="font-size: clamp(24px, 4vw, 40px); color: var(--color-text);"
+      >
+        señal perdida
+      </h1>
+
+      <p class="text-[10px] sm:text-[11px] tracking-[1.5px] sm:tracking-[2px] text-[var(--color-muted2)] max-w-[260px] sm:max-w-xs leading-relaxed">
+        La página que buscás no existe o fue removida.
+      </p>
+
+      <!-- CTA volver -->
+      <a
+        href="/"
+        class="mt-1 sm:mt-2 text-[9px] sm:text-[10px] tracking-[2px] uppercase px-5 py-2.5 sm:px-6 sm:py-3 border border-[var(--color-line2)] text-[var(--color-muted2)] transition-all duration-200 hover:text-[var(--color-text)] hover:border-[var(--color-accent)] hover:-translate-y-1"
+        style="transition-timing-function: var(--ease-spring);"
+      >
+        ← volver al inicio
+      </a>
+
+    </div>
+
+        
+    <!-- Bottom sello -->
+    <div class="absolute bottom-3 sm:bottom-5 left-0 right-0 flex justify-center px-4">
+      <a href="/" class="text-[8px] sm:text-[9px] tracking-[3px] uppercase text-[var(--color-muted)] opacity-30 hover:opacity-50 transition-opacity">
+        matisanabria.me
+      </a>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.12) 2px,
+      rgba(0, 0, 0, 0.12) 4px
+    );
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .torus-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(220px, 60vw, 460px);
+    height: clamp(220px, 60vw, 460px);
+    z-index: 1;
+    perspective: 800px;
+  }
+
+  .torus {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: torusSpin 25s linear infinite;
+  }
+
+  .torus__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55%;
+    height: 55%;
+    border: 1px solid rgba(180, 247, 78, 0.1);
+    border-radius: 50%;
+    transform:
+      translate(-50%, -50%)
+      rotateY(calc(var(--i) * 22.5deg));
+  }
+
+  .torus__ring:nth-child(odd) {
+    border-color: rgba(180, 247, 78, 0.06);
+  }
+
+  @keyframes torusSpin {
+    from { transform: rotateX(55deg) rotateZ(0deg); }
+    to { transform: rotateX(55deg) rotateZ(360deg); }
+  }
+
+</style>
