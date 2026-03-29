@@ -21,7 +21,7 @@ const contacts = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
 
       <!-- Title -->
-      <h2 class="font-display font-bold leading-[1.05] tracking-[-2px] text-text" style="font-size: clamp(32px, 5vw, 52px);">
+      <h2 class="font-display font-bold leading-[1.05] tracking-[-2px] text-text" style="font-size: clamp(48px, 5vw, 52px);">
         Trabajemos<br />juntos<span class="text-accent">.</span>
       </h2>
 
@@ -32,15 +32,17 @@ const contacts = [
             href={c.href}
             target={c.href.startsWith("mailto") ? undefined : "_blank"}
             rel={c.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-            class="group grid grid-cols-[80px_1fr_20px] md:grid-cols-[80px_1fr_20px] items-center gap-4 py-5 border-b border-line no-underline transition-all duration-200 last:border-b-0 hover:pl-2"
+            class="group grid grid-cols-[1fr_20px] sm:grid-cols-[80px_1fr_20px] items-center gap-4 py-5 border-b border-line no-underline transition-all duration-200 last:border-b-0 hover:pl-2"
             style="transition-timing-function: var(--ease-spring);"
           >
-            <span class="font-mono text-[10px] tracking-[1.5px] uppercase text-muted2 hidden sm:block">{c.label}</span>
-            <span class="font-mono text-[13px] font-medium text-text transition-colors duration-200 group-hover:text-accent col-span-1 sm:col-span-1">
-              {c.value}
-            </span>
+            <div class="flex flex-col gap-0.5 sm:contents">
+              <span class="font-mono text-[10px] tracking-[1.5px] uppercase text-muted2">{c.label}</span>
+              <span class="font-mono text-[13px] font-medium text-text transition-colors duration-200 group-hover:text-accent">
+                {c.value}
+              </span>
+            </div>
             <svg
-              class="text-muted2 transition-all duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              class="text-muted2 transition-all duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 justify-self-end"
               style="transition-timing-function: var(--ease-spring);"
               width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             >

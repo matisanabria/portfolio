@@ -7,7 +7,8 @@ interface Project {
   tag: string;
   year: string;
   img: string;
-  url: string;
+  repo?: string;
+  live?: string;
   span: "full" | "half";
 }
 
@@ -15,12 +16,13 @@ const projects: Project[] = [
   {
     num: "01",
     name: "Web para OnBarber",
-    tech: "Laravel · Astro · React · Hetzner",
+    tech: "Laravel · Astro · React · MariaDB",
     desc: "Landing page y plataforma de turnos para barbería. API REST, frontend con islands. En producción en Encarnación.",
     tag: "LANDING PAGE + PLATFORM",
     year: "2026",
     img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/onbarber-image.webp",
-    url: "https://github.com/matisanabria/onbarber-web",
+    repo: "https://github.com/matisanabria/onbarber-web",
+    live: "https://onbarber.com.py",
     span: "full",
   },
   {
@@ -31,18 +33,17 @@ const projects: Project[] = [
     tag: "DESKTOP APP",
     year: "2025",
     img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/barbman-image.webp",
-    url: "https://github.com/matisanabria/barbman",
+    repo: "https://github.com/matisanabria/barbman",
     span: "half",
   },
   {
     num: "03",
     name: "POS MSystem",
-    tech: "CodeIgniter 4 · MySQL · Cloudflare Tunnel",
-    desc: "Punto de venta para cliente en Asunción. Basado en Open Source Point of Sale y adaptado a sus necesidades.",
+    tech: "CodeIgniter 4 · MySQL",
+    desc: "Punto de venta y gestión de inventario para tienda de celulares. Basado en Open Source Point of Sale y adaptado a sus necesidades.",
     tag: "POS SYSTEM",
     year: "2026",
     img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/msystem-image.webp",
-    url: "https://github.com/matisanabria/msystem",
     span: "half",
   },
 ];
@@ -64,13 +65,10 @@ const projects: Project[] = [
 
     <!-- Bento Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {projects.map((p) => (
-        <a
-          href={p.url}
-          target="_blank"
-          rel="noopener noreferrer"
+      {projects.map((p, i) => (
+        <div
           class:list={[
-            "group relative rounded-xl border border-line bg-surface/50 overflow-hidden cursor-pointer transition-all duration-300 hover:border-line2 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] no-underline",
+            "group relative rounded-xl border border-line bg-surface/50 overflow-hidden transition-all duration-300 hover:border-line2 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)]",
             p.span === "full" ? "md:col-span-2" : "",
           ]}
           style="transition-timing-function: var(--ease-spring);"
@@ -83,10 +81,12 @@ const projects: Project[] = [
             <img
               src={p.img}
               alt={`Screenshot de ${p.name}`}
-              loading="lazy"
-              decoding="async"
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchpriority={i === 0 ? "high" : "auto"}
+              decoding={i === 0 ? "sync" : "async"}
               width="1728"
               height="972"
+              sizes={p.span === "full" ? "(max-width: 768px) 100vw, 960px" : "(max-width: 768px) 100vw, 480px"}
               class="w-full h-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02]"
             />
           </div>
@@ -94,11 +94,11 @@ const projects: Project[] = [
           <!-- Info -->
           <div class="p-5 flex flex-col gap-2.5">
             <div class="flex items-center justify-between gap-3">
-              <h3 class="font-display font-bold text-base tracking-tight text-text transition-colors duration-200 group-hover:text-accent">
+              <h3 class="font-display font-bold text-base tracking-tight text-text">
                 {p.name}
               </h3>
               <div class="flex items-center gap-2 shrink-0">
-                <span class="font-mono text-[9px] tracking-[1.5px] text-muted2 border border-line px-2 py-0.5 rounded-sm transition-all duration-200 group-hover:text-accent group-hover:border-accent/20">
+                <span class="font-mono text-[9px] tracking-[1.5px] text-muted2 border border-line px-2 py-0.5 rounded-sm">
                   {p.tag}
                 </span>
                 <span class="font-mono text-[10px] text-muted2">{p.year}</span>
@@ -107,18 +107,45 @@ const projects: Project[] = [
 
             <p class="font-mono text-[11px] leading-[1.75] text-muted">{p.desc}</p>
 
-            <div class="flex items-center justify-between gap-3 pt-0.5">
+            <div class="flex items-center justify-between gap-3 pt-1">
               <span class="font-mono text-[10px] tracking-wide text-muted2">{p.tech}</span>
-              <svg
-                class="shrink-0 text-muted2 transition-all duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                style="transition-timing-function: var(--ease-spring);"
-                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-              </svg>
+
+              <!-- Action buttons -->
+              <div class="flex items-center gap-2 shrink-0">
+                {p.repo && (
+                  <a
+                    href={p.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-mono text-[10px] tracking-wide text-muted2 border border-line2 px-2.5 py-1 rounded inline-flex items-center gap-1.5 no-underline transition-all duration-200 hover:text-text hover:border-muted2"
+                    style="transition-timing-function: var(--ease-spring);"
+                  >
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Repo
+                  </a>
+                )}
+                {!p.repo && (
+                  <span class="font-mono text-[10px] tracking-wide text-muted2/50 border border-line px-2.5 py-1 rounded inline-flex items-center gap-1.5 cursor-default select-none">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Privado
+                  </span>
+                )}
+                {p.live && (
+                  <a
+                    href={p.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-mono text-[10px] tracking-wide text-accent/70 border border-accent/30 px-2.5 py-1 rounded inline-flex items-center gap-1.5 no-underline transition-all duration-200 hover:text-accent hover:border-accent hover:shadow-[0_0_12px_rgba(180,247,78,0.1)]"
+                    style="transition-timing-function: var(--ease-spring);"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent/70 animate-pulse-dot"></span>
+                    Live
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </a>
+        </div>
       ))}
     </div>
 

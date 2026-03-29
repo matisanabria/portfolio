@@ -1,13 +1,13 @@
 ---
 const stack = [
-  "Laravel", "Astro", "React", "Docker", "Git", "Cloudflare",
+  "Astro", "React", "Laravel", "Java", "Docker", "Git", "Cloudflare",
 ];
 
 const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
 ---
 
 <section class="relative flex items-center min-h-0 md:min-h-[calc(100vh-56px)]">
-  <div class="max-w-[960px] w-full mx-auto px-6 md:px-12 py-10 md:py-0 flex flex-col">
+  <div class="max-w-[960px] w-full mx-auto px-6 md:px-12 py-10 md:pt-0 md:pb-24 flex flex-col">
 
     <!-- Tag -->
     <div class="mb-5 md:mb-7 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
@@ -36,9 +36,9 @@ const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-
     <p class="font-mono text-[13px] leading-[1.85] text-muted max-w-[480px] mb-5 md:mb-7 opacity-0 animate-fade-up" style="animation-delay: 0.5s;">
       Estudiante de <em class="not-italic font-medium text-text">ingeniería en informática</em>, 19 años.
       <br class="hidden md:inline" />
-      Construyo cosas reales para clientes reales — webs, APIs
+      Desarrollo landing pages, APIs
       <br class="hidden md:inline" />
-      y apps de escritorio, todo en producción.
+      y apps de escritorio.
     </p>
 
     <!-- Stack -->
@@ -64,7 +64,7 @@ const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-
         href={cvUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="font-mono text-xs tracking-wide px-6 py-3 bg-transparent text-muted no-underline border border-line2 rounded-md inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:text-text hover:border-muted"
+        class="font-mono text-xs tracking-wide px-6 py-3 bg-transparent text-accent/70 no-underline border border-accent/30 rounded-md inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:text-accent hover:border-accent hover:shadow-[0_8px_24px_rgba(180,247,78,0.1)]"
         style="transition-timing-function: var(--ease-spring);"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>

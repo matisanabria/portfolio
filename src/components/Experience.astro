@@ -14,7 +14,7 @@ const experience: Exp[] = [
     role: "Fullstack Developer",
     company: "Freelance",
     location: "Home Office",
-    desc: "Diseño y desarrollo de soluciones a medida para clientes locales. Desde landing pages hasta sistemas de gestión completos.",
+    desc: "Diseño y desarrollo soluciones de software a medida para clientes. Landing pages, sistemas de gestión, APIs REST, entre otros. Utilizo tecnologías como Laravel, React, Astro y bases de datos SQL.",
     active: true,
   },
   {
@@ -22,7 +22,7 @@ const experience: Exp[] = [
     role: "Técnico informático",
     company: "MX Informática",
     location: "Encarnación, Paraguay",
-    desc: "Soporte técnico a usuarios y empresas, de manera presencial y remota. Diagnóstico y reparación de hardware, mantenimiento preventivo y correctivo de equipos, instalación y configuración de sistemas operativos y software en general.",
+    desc: "Soporte técnico a usuarios y empresas de manera presencial o remota. Diagnóstico y reparación de hardware, mantenimiento preventivo y correctivo de equipos, instalación y configuración de sistemas operativos y software en general.",
     active: false,
   }
 ];
@@ -59,7 +59,7 @@ const experience: Exp[] = [
                 {e.period}
               </span>
             </div>
-            <span class="font-mono text-[10px] text-muted2/60">{e.location}</span>
+            <span class="font-mono text-[10px] text-muted2">{e.location}</span>
           </div>
 
           {/* Role + company */}
@@ -73,11 +73,6 @@ const experience: Exp[] = [
           {/* Description */}
           <p class="font-mono text-[11px] leading-[1.85] text-muted">{e.desc}</p>
 
-          {/* Decorative corner accent */}
-          <div class="absolute top-0 right-0 w-12 h-12 overflow-hidden rounded-tr-xl">
-            <div class="absolute top-0 right-0 w-px h-6 bg-line2 transition-colors duration-200 group-hover:bg-accent/30"></div>
-            <div class="absolute top-0 right-0 h-px w-6 bg-line2 transition-colors duration-200 group-hover:bg-accent/30"></div>
-          </div>
         </div>
       ))}
     </div>
