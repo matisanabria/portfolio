@@ -1,87 +1,112 @@
 ---
+const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
+
 const links = [
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Experiencia", href: "#experiencia" },
-  { label: "Contacto", href: "#contacto" },
+  {
+    label: "Proyectos",
+    href: "#work",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>`,
+  },
+  {
+    label: "Experiencia",
+    href: "#experience",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+  },
+  {
+    label: "Sobre mí",
+    href: "#about",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>`,
+  },
+  {
+    label: "Contacto",
+    href: "#contact",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>`,
+  },
 ];
+
+const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>`;
 ---
 
-<nav
-  class="sticky top-0 z-50 border-b border-line backdrop-blur-2xl"
-  style="background: rgba(10, 10, 11, 0.85);"
->
-  <div class="max-w-[960px] mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
-    <a href="#" class="font-display text-sm font-bold text-text no-underline tracking-tight">
-      matisanabria
+<div class="fixed top-[18px] inset-x-0 z-50 flex justify-center pointer-events-none">
+  <nav
+    id="nav"
+    aria-label="Principal"
+    class="group pointer-events-auto flex items-center gap-1 bg-[rgba(20,23,30,.82)] [backdrop-filter:blur(18px)_saturate(140%)] [-webkit-backdrop-filter:blur(18px)_saturate(140%)] border border-[rgba(255,255,255,.10)] rounded-full pl-[14px] pr-[6px] py-[6px] [transition:box-shadow_.35s_ease,background_.35s_ease] shadow-nav data-[collapsed]:shadow-nav-active data-[collapsed]:bg-[rgba(20,23,30,.96)]"
+  >
+    <a
+      class="flex items-center gap-[10px] py-1 pr-3 pl-1 border-r border-[rgba(255,255,255,.10)] mr-1 flex-shrink-0 max-[880px]:border-r-0 max-[880px]:mr-0"
+      href="/"
+      aria-label="Ir al inicio"
+    >
+      <div class="w-[30px] h-[30px] rounded-lg bg-ink text-bg grid place-items-center font-serif italic text-[20px] leading-none tracking-[-0.02em] flex-shrink-0">M</div>
+      <span class="font-semibold text-[14px] tracking-[-0.01em] whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-10px]">Mati Sanabria</span>
     </a>
 
-    <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-7">
-      <ul class="flex list-none gap-1">
-        {links.map((l) => (
-          <li>
-            <a
-              href={l.href}
-              class="font-mono text-[11px] tracking-wide text-muted no-underline px-3.5 py-1.5 rounded-md transition-colors duration-200 hover:text-text hover:bg-surface"
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+    {links.map((l) => (
+      <a
+        class="max-[880px]:hidden inline-flex items-center gap-[7px] px-3 py-2 rounded-full text-[13.5px] text-ink opacity-[0.78] [transition:opacity_.2s_ease,background_.2s_ease,padding_.6s_ease] whitespace-nowrap flex-shrink-0 hover:opacity-100 hover:bg-[rgba(255,255,255,.07)] group-data-[collapsed]:px-[9px]"
+        href={l.href}
+        title={l.label}
+      >
+        <span class="flex items-center flex-shrink-0" set:html={l.icon} />
+        <span class="whitespace-nowrap overflow-hidden max-w-[100px] [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-7px]">{l.label}</span>
+      </a>
+    ))}
 
-    </div>
-
-    <!-- Mobile hamburger -->
-    <button
-      id="menu-toggle"
-      class="flex md:hidden w-9 h-9 items-center justify-center rounded-md border border-line2 text-muted transition-colors duration-200 hover:text-text hover:border-muted cursor-pointer"
-      aria-label="Abrir menú"
-      aria-expanded="false"
+    <a
+      class="ml-1 inline-flex items-center gap-2 bg-accent text-[#0A1A1F] px-4 py-[9px] rounded-full text-[13.5px] font-semibold [transition:transform_.2s_ease,background_.2s_ease,padding_.6s_ease] whitespace-nowrap flex-shrink-0 hover:bg-[color-mix(in_oklab,var(--color-accent)_85%,#fff)] hover:-translate-y-px group-data-[collapsed]:px-[11px] "
+      href={cvUrl}
+      download
+      title="Descargar CV"
     >
-      <svg id="icon-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-      <svg id="icon-close" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-
-  <!-- Mobile menu -->
-  <div
-    id="mobile-menu"
-    class="md:hidden border-t border-line overflow-hidden grid transition-[grid-template-rows] duration-300 ease-out"
-    style="grid-template-rows: 0fr; background: rgba(10, 10, 11, 0.95);"
-  >
-    <div class="min-h-0 overflow-hidden">
-      <div class="max-w-[960px] mx-auto px-6 py-4 flex flex-col gap-1">
-        {links.map((l) => (
-          <a
-            href={l.href}
-            class="mobile-link font-mono text-sm tracking-wide text-muted no-underline px-4 py-3 rounded-md transition-colors duration-200 hover:text-text hover:bg-surface"
-          >
-            {l.label}
-          </a>
-        ))}
-      </div>
-    </div>
-  </div>
-</nav>
+      <span class="flex items-center flex-shrink-0" set:html={cvIcon} />
+      <span class="whitespace-nowrap overflow-hidden max-w-[120px] [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-8px]">Descargar CV</span>
+    </a>
+  </nav>
+</div>
 
 <script>
-  const toggle = document.getElementById("menu-toggle")!;
-  const menu = document.getElementById("mobile-menu")!;
-  const iconOpen = document.getElementById("icon-open")!;
-  const iconClose = document.getElementById("icon-close")!;
-  const mobileLinks = menu.querySelectorAll(".mobile-link");
+  const nav = document.getElementById("nav")!;
+  let collapseTimer: ReturnType<typeof setTimeout> | null = null;
+  let isScrolled = false;
 
-  let isOpen = false;
-
-  function setOpen(open: boolean) {
-    isOpen = open;
-    menu.style.gridTemplateRows = open ? "1fr" : "0fr";
-    iconOpen.classList.toggle("hidden", open);
-    iconClose.classList.toggle("hidden", !open);
-    toggle.setAttribute("aria-expanded", String(open));
+  function setCollapsed(on: boolean) {
+    if (on) nav.dataset.collapsed = "";
+    else delete nav.dataset.collapsed;
   }
 
-  toggle.addEventListener("click", () => setOpen(!isOpen));
-  mobileLinks.forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  function onScroll() {
+    isScrolled = window.scrollY > 900;
+    if (!isScrolled) {
+      if (collapseTimer) { clearTimeout(collapseTimer); collapseTimer = null; }
+      setCollapsed(false);
+    } else {
+      if (!nav.matches(":hover")) setCollapsed(true);
+    }
+  }
+
+  nav.addEventListener("mouseenter", () => {
+    if (collapseTimer) { clearTimeout(collapseTimer); collapseTimer = null; }
+    if (isScrolled) setCollapsed(false);
+  });
+
+  nav.addEventListener("mouseleave", () => {
+    if (isScrolled) {
+      collapseTimer = setTimeout(() => setCollapsed(true), 1000);
+    }
+  });
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = (a as HTMLAnchorElement).getAttribute("href")!.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
+      }
+    });
+  });
 </script>

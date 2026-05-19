@@ -2,47 +2,64 @@
 import "../assets/app.css";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
+  ogImage?: string;
   bare?: boolean;
 }
 
 const {
-  title,
-  description = "dev freelance · encarnación, py",
+  title = "Mati Sanabria — Desarrollador Freelance",
+  description = "Desarrollo web y sistemas para negocios que quieren crecer. Laravel · Astro · Cloudflare · React. Freelance desde Encarnación, Paraguay.",
+  ogImage = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/og-image.webp",
   bare = false,
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, "https://matisanabria.me");
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>{title}</title>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32"/> <!-- Favicon tradicional -->
-		<link rel="icon" type="image/png" href="/favicon.svg" sizes="512x512" /> <!-- Para Android -->
-		<link rel="apple-touch-icon" href="/favicon.svg" /> <!-- Para iOS -->
-		<link rel="preconnect" href="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev" crossorigin />
-		<link rel="preload" href="/fonts/DMMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/DMMono-Medium.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/Unbounded-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <script defer src="https://umami.matisanabria.me/script.js" data-website-id="f3853096-8164-465f-b608-87199eeabd75"></script>
-
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
 
-    <meta property="og:title" content="Mati Sanabria - Portfolio" />
-		<meta property="og:description" content={description} />
-		<meta property="og:locale" content="es_PY" />
-		<meta property="og:url" content="https://matisanabria.me" />
-		<meta property="og:type" content="website" />
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Google Fonts — Geist + Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- R2 preconnect (project screenshots) -->
+    <link rel="preconnect" href="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev" crossorigin />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:locale"      content="es_PY" />
 
     <!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Mati Sanabria - Portfolio" />
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+    <!-- Analytics -->
+    <script defer src="https://umami.matisanabria.me/script.js" data-website-id="f3853096-8164-465f-b608-87199eeabd75"></script>
   </head>
   <body>
     <slot />

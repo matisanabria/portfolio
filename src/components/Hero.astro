@@ -1,75 +1,53 @@
 ---
-const stack = [
-  "Astro", "React", "Laravel", "Java", "Docker", "Git", "Cloudflare",
-];
-
 const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
 ---
 
-<section class="relative flex items-center min-h-0 md:min-h-[calc(100vh-56px)]">
-  <div class="max-w-[960px] w-full mx-auto px-6 md:px-12 py-10 md:py-0 flex flex-col">
+<header class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px]">
+  <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
+    <div class="grid grid-cols-[1.05fr_.95fr] gap-[60px] items-center max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
 
-    <!-- Tag -->
-    <div class="mb-5 md:mb-7 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
-      <span class="font-mono text-xs tracking-wider text-accent px-3.5 py-1.5 rounded bg-accent/5 border border-accent/10">
-        $ whoami
-      </span>
-    </div>
+      <!-- Left -->
+      <div>
+        <h1 class="text-[clamp(44px,6.4vw,88px)] leading-[.98] tracking-[-0.035em] font-semibold mb-6 text-ink text-balance">
+          Construyo sistemas<br />
+          que <span class="font-serif italic text-[1.05em] tracking-[-0.02em] text-ink inline-block translate-y-[0.06em]">realmente</span><br />
+          <span class="relative inline-block whitespace-nowrap after:content-[''] after:absolute after:[left:-0.06em] after:[right:-0.06em] after:[bottom:0.06em] after:[height:0.18em] after:bg-accent after:opacity-85 after:-z-10 after:rounded-sm">funcionan</span>.
+        </h1>
 
-    <!-- Name -->
-    <h1
-      class="font-display font-bold leading-[0.92] tracking-[-2px] md:tracking-[-3px] mb-6 opacity-0 animate-fade-up"
-      style="font-size: clamp(48px, 10vw, 110px); animation-delay: 0.3s;"
-    >
-      <span class="block text-text">MATI</span>
-      <span class="block text-muted2">SANABRIA</span>
-    </h1>
+        <p class="text-[18px] text-muted max-w-[520px] mb-8 leading-[1.6]">
+          Desarrollo web y sistemas para negocios que quieren crecer.<br />
+          Laravel · Astro · Cloudflare
+        </p>
 
-    <!-- Role -->
-    <div class="flex items-center gap-3 mb-5 opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
-      <p class="font-mono text-[13px] text-text font-medium">Web Developer</p>
-      <span class="w-1 h-1 rounded-full bg-muted2"></span>
-      <p class="font-mono text-xs text-muted">Encarnación, PY</p>
-    </div>
+        <div class="flex gap-3 flex-wrap items-center">
+          <a
+            class="group inline-flex items-center gap-[10px] px-[22px] py-[14px] rounded-full text-[14.5px] font-medium tracking-[-0.005em] bg-ink text-bg transition-[transform,background] duration-200 hover:bg-black hover:-translate-y-px"
+            href="#work"
+          >
+            Ver trabajos <span class="transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+          </a>
+          <a
+            class="group inline-flex items-center gap-[10px] pl-2 pr-[22px] py-[14px] rounded-full text-[14.5px] font-medium tracking-[-0.005em] bg-transparent text-ink transition-colors duration-200 hover:text-accent"
+            href="#contact"
+          >
+            Agendar reunión <span class="transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+          </a>
+        </div>
+      </div>
 
-    <!-- Bio -->
-    <p class="font-mono text-[13px] leading-[1.85] text-muted max-w-[480px] mb-5 md:mb-7 opacity-0 animate-fade-up" style="animation-delay: 0.5s;">
-      Estudiante de <em class="not-italic font-medium text-text">ingeniería en informática</em>, 19 años.
-      <br class="hidden md:inline" />
-      Desarrollo landing pages, APIs
-      <br class="hidden md:inline" />
-      y apps de escritorio.
-    </p>
-
-    <!-- Stack -->
-    <div class="flex flex-wrap gap-1.5 mb-6 md:mb-9 opacity-0 animate-fade-up" style="animation-delay: 0.6s;">
-      {stack.map((s) => (
-        <span class="font-mono text-[10px] tracking-wider text-muted border border-line2 px-3 py-1.5 rounded cursor-default transition-all duration-200 hover:text-accent hover:border-accent hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(180,247,78,0.08)]" style="transition-timing-function: var(--ease-spring);">
-          {s}
-        </span>
-      ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="flex gap-3 flex-wrap opacity-0 animate-fade-up" style="animation-delay: 0.7s;">
-      <a
-        href="#proyectos"
-        class="font-mono text-xs tracking-wide px-6 py-3 bg-accent text-bg no-underline rounded-md inline-flex items-center gap-2 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(180,247,78,0.2)]"
-        style="transition-timing-function: var(--ease-spring);"
+      <!-- Right: visual -->
+      <div
+        class="relative aspect-[4/4.3] rounded-[20px] overflow-hidden [background:radial-gradient(120%_80%_at_20%_0%,color-mix(in_oklab,var(--color-accent)_12%,transparent),transparent_60%),linear-gradient(180deg,#191D27,#0C0E12)] shadow-hero-visual max-[960px]:aspect-[4/2.6]"
+        role="img"
+        aria-label="Foto de perfil de Mati Sanabria"
       >
-        <span>Ver proyectos</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </a>
-      <a
-        href={cvUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-mono text-xs tracking-wide px-6 py-3 bg-transparent text-accent/70 no-underline border border-accent/30 rounded-md inline-flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:text-accent hover:border-accent hover:shadow-[0_8px_24px_rgba(180,247,78,0.1)]"
-        style="transition-timing-function: var(--ease-spring);"
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Descargar CV
-      </a>
+        <div class="absolute inset-0 [background-image:repeating-linear-gradient(45deg,rgba(16,18,22,.045)_0_1px,transparent_1px_14px)] mix-blend-multiply"></div>
+
+        <div class="absolute left-7 right-7 bottom-7 font-serif italic text-[clamp(56px,9vw,96px)] leading-[0.9] tracking-[-0.04em] text-ink text-balance">
+          Mati<br /><span class="text-[color-mix(in_oklab,var(--color-ink)_25%,transparent)]">Sanabria</span>
+        </div>
+      </div>
+
     </div>
   </div>
-</section>
+</header>

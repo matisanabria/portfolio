@@ -1,91 +1,90 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "DM Mono";
-  src: url("/fonts/DMMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DM Mono";
-  src: url("/fonts/DMMono-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
-  --font-mono: "DM Mono", ui-monospace, monospace;
-  --font-display: "Unbounded", sans-serif;
+  --font-sans:  "Geist", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
 
-  --color-bg: #0a0a0b;
-  --color-surface: #131316;
-  --color-line: #1e1e23;
-  --color-line2: #2a2a32;
-  --color-text: #ededef;
-  --color-muted: #909099;
-  --color-muted2: #7e7e88;
-  --color-accent: #b4f74e;
-  --color-red: #f85149;
-  --color-purple: #7b2fff;
+  --color-bg:      #0C0E12;
+  --color-bg2:     #13161C;
+  --color-ink:     #FFFFFF;
+  --color-ink2:    #C0C0C0;
+  --color-muted:   #787B85;
+  --color-card:    #181B24;
+  --color-accent:  #22D3EE;
+  --color-accent2: #0A3A45;
 
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
 
-  --animate-fade-up: fade-up 0.7s var(--ease-out) forwards;
+  --animate-fade-up:   fade-up 0.7s var(--ease-out) forwards;
   --animate-pulse-dot: pulse-dot 2s ease infinite;
-  --animate-blink: blink 0.8s step-end infinite;
+  --animate-blink:     blink 0.8s step-end infinite;
+  --animate-glow:      pulse 2s ease infinite;
+
+  --shadow-nav:         0 1px 0 rgba(255,255,255,.04) inset, 0 10px 30px -12px rgba(0,0,0,.5), 0 2px 6px -2px rgba(0,0,0,.3);
+  --shadow-nav-active:  0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -16px rgba(0,0,0,.6), 0 4px 10px -4px rgba(0,0,0,.4);
+  --shadow-hero-visual: 0 30px 60px -30px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.05) inset;
+  --shadow-hv-card:     0 10px 24px -10px rgba(0,0,0,.4);
+  --shadow-work-hover:  0 24px 40px -24px rgba(0,0,0,.4);
+  --shadow-form:        0 1px 0 rgba(255,255,255,.06) inset, 0 30px 60px -40px rgba(16,18,22,.3);
+}
+
+:root {
+  --bg:      #0C0E12;
+  --bg-2:    #13161C;
+  --ink:     #FFFFFF;
+  --ink-2:   #C0C0C0;
+  --muted:   #787B85;
+  --line:    rgba(255, 255, 255, .10);
+  --line-2:  rgba(255, 255, 255, .07);
+  --card:    #181B24;
+  --accent:  #22D3EE;
+  --accent-2:#0A3A45;
 }
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50%       { opacity: 0; }
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.15); opacity: .85; }
 }
 
 @layer base {
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-mono);
-    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Geist", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
 
-  ::selection {
-    background: var(--color-accent);
-    color: var(--color-bg);
-  }
+  a      { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  img    { display: block; max-width: 100%; }
+
+  ::selection { background: var(--accent); color: var(--bg); }
 }
+
+/* JS-driven scroll reveal */
+.reveal     { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.on  { opacity: 1; transform: none; }
