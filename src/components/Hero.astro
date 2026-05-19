@@ -1,10 +1,12 @@
 ---
+import BackgroundBeams from "./BackgroundBeams.tsx";
 const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
 ---
 
-<header class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px]">
+<header id="vanta-hero" class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px]">
+  <BackgroundBeams client:only="react" />
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
-    <div class="grid grid-cols-[1.05fr_.95fr] gap-[60px] items-center max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
+    <div class="relative z-10 grid grid-cols-[1.05fr_.95fr] gap-[60px] items-center max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
 
       <!-- Left -->
       <div>
@@ -43,6 +45,14 @@ const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-
       >
         <div class="absolute inset-0 [background-image:repeating-linear-gradient(45deg,rgba(16,18,22,.045)_0_1px,transparent_1px_14px)] mix-blend-multiply"></div>
 
+        <img
+          src="/hero.webp"
+          alt="Mati Sanabria"
+          class="absolute inset-0 w-full h-full object-cover object-top"
+          loading="eager"
+          decoding="async"
+        />
+
         <div class="absolute left-7 right-7 bottom-7 font-serif italic text-[clamp(56px,9vw,96px)] leading-[0.9] tracking-[-0.04em] text-ink text-balance">
           Mati<br /><span class="text-[color-mix(in_oklab,var(--color-ink)_25%,transparent)]">Sanabria</span>
         </div>
@@ -51,3 +61,4 @@ const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-
     </div>
   </div>
 </header>
+

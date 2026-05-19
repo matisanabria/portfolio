@@ -76,7 +76,7 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
   }
 
   function onScroll() {
-    isScrolled = window.scrollY > 900;
+    isScrolled = window.scrollY > 500;
     if (!isScrolled) {
       if (collapseTimer) { clearTimeout(collapseTimer); collapseTimer = null; }
       setCollapsed(false);
