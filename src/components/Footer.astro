@@ -1,22 +1,23 @@
 ---
+interface LinkItem { label: string; href: string }
+
+interface Props {
+  t: {
+    cta: string;
+    tagline: string;
+    navLabel: string;
+    socialLabel: string;
+    contactLabel: string;
+    navLinks: LinkItem[];
+    socialLinks: LinkItem[];
+    contactLinks: LinkItem[];
+    copyright: string;
+    available: string;
+  };
+}
+
+const { t } = Astro.props;
 const year = new Date().getFullYear();
-
-const nav = [
-  { label: "Trabajo",  href: "#work" },
-  { label: "Sobre mí", href: "#about" },
-  { label: "Contacto", href: "#contact" },
-];
-
-const social = [
-  { label: "GitHub ↗",   href: "https://github.com/matisanabria" },
-  { label: "LinkedIn ↗", href: "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" },
-];
-
-const contact = [
-  { label: "contacto@matisanabria.me", href: "mailto:contacto@matisanabria.me" },
-  { label: "Formulario ↗",             href: "#contact" },
-  { label: "Encarnación, PY",          href: "#" },
-];
 ---
 
 <footer class="bg-[#080A0D] text-[color-mix(in_oklab,var(--color-ink)_90%,transparent)] rounded-t-[32px] mt-[60px] pt-16 pb-7 border-t border-[rgba(255,255,255,.06)]">
@@ -30,15 +31,15 @@ const contact = [
           class="w-[46px] h-[46px] rounded-xl bg-accent text-[#0A1A1F] grid place-items-center font-serif italic text-[30px] leading-none tracking-[-0.02em] mb-[18px]"
           aria-hidden="true"
         >M</div>
-        <h3 class="text-[28px] tracking-[-0.02em] mb-3 font-semibold text-white max-w-[14ch] leading-[1.1]">¿Tenés un proyecto en mente?</h3>
-        <p class="text-[rgba(255,255,255,.6)] text-[14px] max-w-[32ch] leading-[1.55]">Desarrollador freelance desde Encarnación, Paraguay. Disponible para nuevos proyectos.</p>
+        <h3 class="text-[28px] tracking-[-0.02em] mb-3 font-semibold text-white max-w-[14ch] leading-[1.1]">{t.cta}</h3>
+        <p class="text-[rgba(255,255,255,.6)] text-[14px] max-w-[32ch] leading-[1.55]">{t.tagline}</p>
       </div>
 
       <!-- Nav -->
       <div>
-        <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">NAVEGACIÓN</h4>
+        <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">{t.navLabel}</h4>
         <ul class="list-none m-0 p-0 grid gap-[10px]">
-          {nav.map((l) => (
+          {t.navLinks.map((l) => (
             <li><a class="text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent" href={l.href}>{l.label}</a></li>
           ))}
         </ul>
@@ -46,9 +47,9 @@ const contact = [
 
       <!-- Social -->
       <div>
-        <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">REDES</h4>
+        <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">{t.socialLabel}</h4>
         <ul class="list-none m-0 p-0 grid gap-[10px]">
-          {social.map((l) => (
+          {t.socialLinks.map((l) => (
             <li><a class="text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
           ))}
         </ul>
@@ -56,9 +57,9 @@ const contact = [
 
       <!-- Contact -->
       <div>
-        <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">CONTACTO</h4>
+        <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">{t.contactLabel}</h4>
         <ul class="list-none m-0 p-0 grid gap-[10px]">
-          {contact.map((l) => (
+          {t.contactLinks.map((l) => (
             <li><a class="text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent" href={l.href}>{l.label}</a></li>
           ))}
         </ul>
@@ -66,10 +67,10 @@ const contact = [
     </div>
 
     <div class="flex justify-between items-center pt-6 gap-5 flex-wrap font-mono text-[11px] text-[rgba(255,255,255,.45)] tracking-[0.08em] max-[560px]:flex-col max-[560px]:text-center">
-      <div>© {year} MATI SANABRIA — ENCARNACIÓN, PARAGUAY</div>
+      <div>© {year} {t.copyright}</div>
       <div class="inline-flex items-center gap-2">
         <span class="w-[6px] h-[6px] rounded-full bg-[#7BE7A7] shadow-[0_0_0_4px_rgba(123,231,167,.22)] animate-glow" aria-hidden="true"></span>
-        DISPONIBLE PARA PROYECTOS · GMT−3
+        {t.available}
       </div>
     </div>
 

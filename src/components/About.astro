@@ -1,70 +1,43 @@
 ---
-const stack = [
-  {
-    area: "Backend",
-    name: "Laravel",
-    sub: "PHP framework",
-    detail: "APIs, paneles, lógica de negocio",
-    tags: ["Filament", "Livewire", "Sanctum"],
-  },
-  {
-    area: "Frontend",
-    name: "Astro",
-    sub: "Web framework",
-    detail: "Sitios rápidos, SEO-friendly",
-    tags: ["Astro", "Astro Islands", "Tailwind"],
-  },
-  {
-    area: "UI",
-    name: "React",
-    sub: "UI library",
-    detail: "Dashboards, apps interactivas",
-    tags: ["React", "TypeScript", "Vite"],
-  },
-  {
-    area: "Infra",
-    name: "Cloudflare",
-    sub: "Edge platform",
-    detail: "Deploy, storage, dominios",
-    tags: ["Pages", "Workers", "R2"],
-  },
-];
+interface StackItem { area: string; name: string; sub: string; detail: string; tags: string[] }
+
+interface Props {
+  t: {
+    sectionLabel: string;
+    heading: string;
+    headingItalic: string;
+    bio: string[];
+    stackLabel: string;
+    stack: StackItem[];
+  };
+}
+
+const { t } = Astro.props;
+const stack = t.stack;
 ---
 
 <section id="about" class="relative py-[80px]">
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
 
-    <div class="mb-10">
-      <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">03 / SOBRE MÍ</div>
-      <h2 class="text-[clamp(40px,5.5vw,72px)] font-semibold tracking-[-0.03em] text-ink leading-none mt-2">
-        Un poco de <span class="font-serif italic">contexto</span>.
-      </h2>
-    </div>
-
     <div class="grid grid-cols-[1.1fr_.9fr] gap-[60px] max-[960px]:grid-cols-1 max-[960px]:gap-12">
 
       <!-- Bio -->
       <div>
-        <p class="text-[18px] leading-[1.55] text-ink max-w-[50ch]">
-          Soy <strong class="font-semibold">Matias Sanabria</strong>, tengo <strong class="font-semibold">19 años</strong> y trabajo como
-          desarrollador freelance desde Paraguay. Construyo sistemas y sitios
-          web para negocios que quieren crecer.
-        </p>
-        <p class="text-[18px] leading-[1.55] text-ink max-w-[50ch] mt-[18px]">
-          Actualmente estoy cursando <span class="font-serif italic text-[1.05em]">Ingeniería en Informática</span>
-          en la Universidad Católica, aprendo a analizar sistemas, programacion y diseño de software,
-          y trabajo en equipos.
-        </p>
-        <p class="text-[18px] leading-[1.55] text-ink max-w-[50ch] mt-[18px]">
-          De manera autodidacta he aprendido a desarrollar con PHP y Laravel,
-          y a lo largo de los años he construido proyectos personales y para clientes,
-          desde sitios web hasta sistemas de gestión complejos.
-        </p>
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">{t.sectionLabel}</div>
+        <h2 class="text-[clamp(40px,5.5vw,72px)] font-semibold tracking-[-0.03em] text-ink leading-none mt-2 mb-10">
+          {t.heading} <span class="font-serif italic">{t.headingItalic}</span>.
+        </h2>
+        {t.bio.map((paragraph, i) => (
+          <p
+            class:list={["text-[18px] leading-[1.55] text-ink max-w-[50ch] [&_strong]:font-semibold [&_em]:font-serif [&_em]:italic [&_em]:text-[1.05em]", i > 0 && "mt-[18px]"]}
+            set:html={paragraph}
+          />
+        ))}
       </div>
 
       <!-- Stack timeline -->
       <div>
-        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted mb-[18px]">STACK</div>
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted mb-[18px]">{t.stackLabel}</div>
         <div class="border-t border-[var(--line)]">
           {stack.map((s) => (
             <div class="grid grid-cols-[80px_1fr_auto] gap-6 py-5 border-b border-[var(--line)] items-start max-[640px]:grid-cols-1 max-[640px]:gap-2">

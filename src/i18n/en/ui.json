@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "experience": "Experience",
+    "about": "About",
+    "contact": "Contact",
+    "cv": "Download CV"
+  },
+  "hero": {
+    "greeting": "Hi, I'm ",
+    "italicName": "Matias Sanabria",
+    "sub": "Web development and systems for businesses that want to grow.",
+    "cta1": "View work",
+    "cta2": "Schedule a call"
+  },
+  "stack": {
+    "label": "STACK & TOOLS",
+    "items": ["Laravel", "Astro", "React", "Cloudflare", "PHP", "TypeScript", "MySQL", "Tailwind"]
+  },
+  "projects": {
+    "sectionLabel": "01 / PROJECTS",
+    "heading": "Recent",
+    "headingItalic": "projects",
+    "sub": "A small sample. For full case studies, let's talk.",
+    "repo": "Repo",
+    "private": "Private",
+    "live": "Web ↗"
+  },
+  "experience": {
+    "sectionLabel": "02 / EXPERIENCE",
+    "heading": "My",
+    "headingItalic": "experience",
+    "sub": "From early projects to current freelance work."
+  },
+  "about": {
+    "sectionLabel": "03 / ABOUT",
+    "heading": "A bit of",
+    "headingItalic": "context",
+    "bio": [
+      "I'm <strong>Matias Sanabria</strong>, <strong>19 years old</strong>, working as a freelance developer from Paraguay. I build systems and websites for businesses that want to grow.",
+      "I'm currently studying <em>Computer Engineering</em> at Universidad Católica, learning systems analysis, software programming and design, and teamwork.",
+      "Self-taught in PHP and Laravel, over the years I've built personal and client projects ranging from websites to complex management systems."
+    ],
+    "stackLabel": "STACK",
+    "stack": [
+      { "area": "Backend", "name": "Laravel", "sub": "PHP framework", "detail": "APIs, dashboards, business logic", "tags": ["Filament", "Livewire", "Sanctum"] },
+      { "area": "Frontend", "name": "Astro", "sub": "Web framework", "detail": "Fast sites, SEO-friendly", "tags": ["Astro", "Astro Islands", "Tailwind"] },
+      { "area": "UI", "name": "React", "sub": "UI library", "detail": "Dashboards, interactive apps", "tags": ["React", "TypeScript", "Vite"] },
+      { "area": "Infra", "name": "Cloudflare", "sub": "Edge platform", "detail": "Deploy, storage, domains", "tags": ["Pages", "Workers", "R2"] }
+    ]
+  },
+  "footer": {
+    "cta": "Got a project in mind?",
+    "tagline": "Freelance developer from Encarnación, Paraguay. Available for new projects.",
+    "navLabel": "NAVIGATION",
+    "socialLabel": "SOCIAL",
+    "contactLabel": "CONTACT",
+    "navLinks": [
+      { "label": "Work", "href": "#work" },
+      { "label": "About", "href": "#about" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "socialLinks": [
+      { "label": "GitHub ↗", "href": "https://github.com/matisanabria" },
+      { "label": "LinkedIn ↗", "href": "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" }
+    ],
+    "contactLinks": [
+      { "label": "contacto@matisanabria.me", "href": "mailto:contacto@matisanabria.me" },
+      { "label": "Form ↗", "href": "#contact" },
+      { "label": "Encarnación, PY", "href": "#" }
+    ],
+    "copyright": "MATI SANABRIA — ENCARNACIÓN, PARAGUAY",
+    "available": "AVAILABLE FOR PROJECTS · GMT−3"
+  }
+}

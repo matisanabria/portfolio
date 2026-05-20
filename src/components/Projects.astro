@@ -1,52 +1,43 @@
 ---
-interface Project {
-  name: string;
-  tech: string;
-  desc: string;
-  tag: string;
-  year: string;
-  img: string;
-  repo?: string;
-  live?: string;
-  col: "col-7" | "col-5" | "col-12";
-  bg?: string;
+import type { Project } from "../i18n/types";
+import {
+  siLaravel,
+  siAstro,
+  siReact,
+  siMariadb,
+  siSqlite,
+  siHibernate,
+  siCodeigniter,
+  siMysql,
+  siOpenjdk,
+} from "simple-icons";
+
+interface Props {
+  items: Project[];
+  t: {
+    sectionLabel: string;
+    heading: string;
+    headingItalic: string;
+    sub: string;
+    repo: string;
+    private: string;
+    live: string;
+  };
 }
 
-const projects: Project[] = [
-  {
-    name: "Web para OnBarber",
-    tech: "Laravel · Astro · React · MariaDB",
-    desc: "Landing page y plataforma de turnos para barbería. API REST, frontend con islands. En producción en Encarnación.",
-    tag: "LANDING + PLATAFORMA",
-    year: "2026",
-    img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/onbarber-image.webp",
-    repo: "https://github.com/matisanabria/onbarber-web",
-    live: "https://onbarber.com.py",
-    col: "col-7",
-    bg: "linear-gradient(140deg, #1A1D22, #0B0D10)",
-  },
-  {
-    name: "Barbman",
-    tech: "Java 17 · JavaFX · SQLite · Hibernate",
-    desc: "Sistema de gestión para barberías. Punto de venta, clientes, stock y reportes. En uso desde 2025.",
-    tag: "DESKTOP APP",
-    year: "2025",
-    img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/barbman-image.webp",
-    repo: "https://github.com/matisanabria/barbman",
-    col: "col-5",
-    bg: "linear-gradient(135deg, #1e2030, #0f1118)",
-  },
-  {
-    name: "POS MSystem",
-    tech: "CodeIgniter 4 · MySQL",
-    desc: "Punto de venta y gestión de inventario para tienda de celulares. Adaptado a medida desde Open Source Point of Sale.",
-    tag: "POS SYSTEM",
-    year: "2026",
-    img: "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/msystem-image.webp",
-    col: "col-12",
-    bg: "linear-gradient(160deg, color-mix(in oklab, #CAFF3E 8%, #0C0E12), #0C0E12)",
-  },
-];
+const { items: projects, t } = Astro.props;
+
+const TECH_ICONS: Record<string, { path: string; hex: string }> = {
+  "Laravel":       { path: siLaravel.path,    hex: siLaravel.hex },
+  "Astro":         { path: siAstro.path,       hex: siAstro.hex },
+  "React":         { path: siReact.path,       hex: siReact.hex },
+  "MariaDB":       { path: siMariadb.path,     hex: siMariadb.hex },
+  "SQLite":        { path: siSqlite.path,      hex: siSqlite.hex },
+  "Hibernate":     { path: siHibernate.path,   hex: siHibernate.hex },
+  "CodeIgniter 4": { path: siCodeigniter.path, hex: siCodeigniter.hex },
+  "MySQL":         { path: siMysql.path,       hex: siMysql.hex },
+  "Java 17":       { path: siOpenjdk.path,     hex: siOpenjdk.hex },
+};
 
 const colClass: Record<Project["col"], string> = {
   "col-7":  "col-span-7 max-[880px]:col-span-12",
@@ -55,93 +46,128 @@ const colClass: Record<Project["col"], string> = {
 };
 ---
 
-<section id="work" class="relative py-[80px]">
+<section id="work" class="relative py-[96px] border-t border-[var(--line)]">
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
 
-    <div class="flex justify-between items-end mb-10 gap-6">
+    <!-- Section header — grid 1fr auto matching design -->
+    <div class="grid grid-cols-[1fr_auto] gap-7 items-end mb-14 max-[760px]:grid-cols-1">
       <div>
-        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">01 / PROYECTOS</div>
-        <h2 class="text-[clamp(40px,5.5vw,72px)] font-semibold tracking-[-0.03em] text-ink leading-none mt-2">
-          Proyectos <span class="font-serif italic">recientes</span>.
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted mb-[14px]">{t.sectionLabel}</div>
+        <h2 class="text-[clamp(38px,4.6vw,64px)] font-semibold tracking-[-0.03em] text-ink leading-none m-0">
+          {t.heading} <span class="font-serif italic">{t.headingItalic}</span>.
         </h2>
       </div>
-      <p class="text-[15px] text-muted max-w-[40ch] leading-[1.5]">Una pequeña muestra. Para casos completos, hablemos.</p>
+      <p class="text-[15px] text-muted max-w-[38ch] leading-[1.5]">{t.sub}</p>
     </div>
 
+    <!-- Work grid -->
     <div class="grid grid-cols-12 gap-6">
-      {projects.map((p, i) => (
-        <article class:list={["group relative rounded-[20px] overflow-hidden bg-bg2 border border-[var(--line-2)] [transition:transform_.35s_ease,box-shadow_.35s_ease] hover:-translate-y-[3px] hover:shadow-work-hover", colClass[p.col]]}>
+      {projects.map((p, i) => {
+        const techList = p.tech.split(" · ");
+        return (
+          <article class:list={[
+            "group flex flex-col rounded-[28px] overflow-hidden",
+            "bg-bg2 border border-[var(--line-2)]",
+            "[transition:transform_.5s_cubic-bezier(.22,1,.36,1),box-shadow_.5s_cubic-bezier(.22,1,.36,1),border-color_.5s_ease]",
+            "hover:-translate-y-[2px] hover:shadow-[0_12px_32px_-16px_rgba(16,18,22,.35)] hover:border-[var(--line)]",
+            colClass[p.col],
+          ]}>
 
-          <!-- Image area -->
-          <div
-            class="aspect-[16/10] relative overflow-hidden bg-bg2"
-            style={p.bg ? `background: ${p.bg};` : ""}
-          >
-            <div class="absolute inset-0 z-[1] [background-image:repeating-linear-gradient(45deg,rgba(16,18,22,.05)_0_1px,transparent_1px_12px)] pointer-events-none"></div>
-            <div class="absolute left-[18px] top-4 z-[2] font-mono text-[10.5px] tracking-[0.16em] uppercase text-muted">/ {p.tag}</div>
-            <img
-              src={p.img}
-              alt={`Captura de pantalla de ${p.name}`}
-              loading={i === 0 ? "eager" : "lazy"}
-              fetchpriority={i === 0 ? "high" : "auto"}
-              decoding={i === 0 ? "sync" : "async"}
-              width="1200"
-              height="750"
-              class="w-full h-full object-cover opacity-85 [transition:opacity_.4s_ease,transform_.4s_ease] group-hover:opacity-100 group-hover:scale-[1.02]"
-            />
-          </div>
-
-          <!-- Body -->
-          <div class="p-[22px_24px_26px] flex justify-between gap-5 items-end max-[880px]:flex-col max-[880px]:items-start">
-            <div>
-              <div class="font-mono text-[11px] text-muted tracking-[0.06em] mb-[6px]">{p.tech}</div>
-              <h3 class="m-0 text-[20px] tracking-[-0.02em] font-semibold text-ink">{p.name}</h3>
-              <p class="mt-[6px] text-[13.5px] text-muted max-w-[52ch]">{p.desc}</p>
+            <!-- Image: flex-1 → fills remaining space, adapts to card height -->
+            <div class="flex-1 min-h-[110px] relative overflow-hidden">
+              <img
+                src={p.img}
+                alt={p.name}
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchpriority={i === 0 ? "high" : "auto"}
+                decoding={i === 0 ? "sync" : "async"}
+                width="1200"
+                height="750"
+                class="w-full h-full object-cover [transition:transform_.6s_cubic-bezier(.22,1,.36,1),opacity_.5s_ease] opacity-85 group-hover:scale-[1.012] group-hover:opacity-95"
+              />
             </div>
-            <div class="flex flex-col items-end gap-2 flex-shrink-0 max-[880px]:items-start max-[880px]:flex-row">
-              <span class="font-mono text-[12px] text-muted">{p.year}</span>
-              <div class="flex gap-[6px] items-center">
-                {p.repo && (
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-[6px] font-mono text-[11px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-muted [transition:color_.2s_ease,border-color_.2s_ease] hover:text-ink hover:border-ink"
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.7 18.3.5 12 .5z"/>
-                    </svg>
-                    Repo
-                  </a>
-                )}
-                {!p.repo && (
-                  <span
-                    class="inline-flex items-center gap-[6px] font-mono text-[11px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-muted opacity-50 cursor-default"
-                    aria-label="Repositorio privado"
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                      <rect x="3" y="11" width="18" height="11" rx="2"/>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </svg>
-                    Privado
-                  </span>
-                )}
-                {p.live && (
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-[6px] font-mono text-[11px] px-[10px] py-[5px] rounded-full border border-[color-mix(in_oklab,var(--color-accent)_30%,transparent)] text-accent [transition:border-color_.2s_ease,box-shadow_.2s_ease] hover:border-accent hover:shadow-[0_0_12px_color-mix(in_oklab,var(--color-accent)_15%,transparent)]"
-                  >
-                    <span class="w-[6px] h-[6px] rounded-full bg-accent animate-pulse-dot"></span>
-                    Live ↗
-                  </a>
-                )}
+
+            <!-- Body: flex-shrink-0 → always same height, never pushed by image -->
+            <div class="flex-shrink-0 p-[22px_24px_26px] flex justify-between gap-6 items-end max-[560px]:flex-col max-[560px]:items-start max-[560px]:gap-4">
+
+              <!-- Left: tech icons + name + desc -->
+              <div class="min-w-0">
+                <!-- tech icons row (replaces .meta mono text) -->
+                <div class="flex items-center gap-[10px] flex-wrap mb-[6px]">
+                  {techList.map((tech) => {
+                    const icon = TECH_ICONS[tech];
+                    return icon ? (
+                      <div class="relative group/icon">
+                        <svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          style={`fill: #${icon.hex}; opacity: 0.45;`}
+                          class="[transition:opacity_.2s_ease] group-hover/icon:!opacity-85"
+                        >
+                          <path d={icon.path} />
+                        </svg>
+                        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-[6px] font-mono text-[9px] px-[7px] py-[2.5px] rounded-full bg-bg2 border border-[var(--line)] text-muted whitespace-nowrap opacity-0 pointer-events-none [transition:opacity_.15s_ease] group-hover/icon:opacity-100 z-10">
+                          {tech}
+                        </span>
+                      </div>
+                    ) : (
+                      <span class="font-mono text-[9px] px-[7px] py-[2px] rounded-full border border-[var(--line)] text-muted/60">
+                        {tech}
+                      </span>
+                    );
+                  })}
+                </div>
+
+                <h3 class="m-0 text-[22px] tracking-[-0.02em] font-semibold text-ink">{p.name}</h3>
+                <p class="mt-[5px] text-[13px] text-muted leading-[1.55] max-w-[54ch] line-clamp-2">{p.desc}</p>
               </div>
+
+              <!-- Right: year + links -->
+              <div class="flex flex-col items-end gap-[8px] flex-shrink-0 max-[560px]:items-start max-[560px]:flex-row max-[560px]:flex-wrap">
+                <span class="font-mono text-[12px] text-muted">{p.year}</span>
+                <div class="flex gap-[5px] items-center">
+                  {p.repo && (
+                    <a
+                      href={p.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-[5px] font-mono text-[10.5px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-muted [transition:color_.2s_ease,border-color_.2s_ease] hover:text-ink hover:border-[rgba(238,233,223,.3)]"
+                    >
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.7 18.3.5 12 .5z"/>
+                      </svg>
+                      {t.repo}
+                    </a>
+                  )}
+                  {!p.repo && (
+                    <span class="inline-flex items-center gap-[5px] font-mono text-[10.5px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-muted opacity-35 cursor-default">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      {t.private}
+                    </span>
+                  )}
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-[5px] font-mono text-[10.5px] px-[10px] py-[5px] rounded-full border border-[color-mix(in_oklab,var(--color-accent)_28%,transparent)] text-accent [transition:border-color_.2s_ease,box-shadow_.2s_ease] hover:border-accent hover:shadow-[0_0_10px_color-mix(in_oklab,var(--color-accent)_18%,transparent)]"
+                    >
+                      <span class="w-[5px] h-[5px] rounded-full bg-accent animate-pulse-dot"></span>
+                      {t.live}
+                    </a>
+                  )}
+                </div>
+              </div>
+
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        );
+      })}
     </div>
 
   </div>

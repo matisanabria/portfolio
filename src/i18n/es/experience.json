@@ -1,0 +1,22 @@
+[
+  {
+    "period": "2024 — presente",
+    "mode": "Tiempo completo",
+    "role": "Desarrollador Freelance",
+    "company": "Independiente",
+    "location": "Encarnación, PY · Remoto",
+    "desc": "Construyo sistemas a medida y sitios web para clientes en Paraguay y la región. Desde el diseño hasta el deploy: backend en Laravel, frontend con Astro y React, infraestructura en Cloudflare.",
+    "tags": ["Laravel", "Astro", "React", "Cloudflare"],
+    "active": true
+  },
+  {
+    "period": "Abril 2024 — Enero 2026",
+    "mode": "Presencial",
+    "role": "Técnico Informático",
+    "company": "MX Informática",
+    "location": "Encarnación, PY",
+    "desc": "Soporte técnico a usuarios y empresas. Diagnóstico y reparación de hardware, mantenimiento preventivo y correctivo, instalación y configuración de sistemas operativos y software.",
+    "tags": ["Hardware", "Soporte", "Windows"],
+    "active": false
+  }
+]

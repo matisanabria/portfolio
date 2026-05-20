@@ -1,0 +1,22 @@
+[
+  {
+    "name": "OnBarber Website",
+    "tech": "Laravel · Astro · React · MariaDB",
+    "desc": "Landing page and booking platform for a barbershop. REST API, island-based frontend. Live in Encarnación."
+  },
+  {
+    "name": "Barbman",
+    "tech": "Java 17 · SQLite · Hibernate",
+    "desc": "Management system for barbershops. Point of sale, clients, stock and reports. In use since 2025."
+  },
+  {
+    "name": "New Project",
+    "tech": "",
+    "desc": ""
+  },
+  {
+    "name": "POS MSystem",
+    "tech": "CodeIgniter 4 · MySQL",
+    "desc": "Point of sale and inventory management for a phone store. Custom-adapted from Open Source Point of Sale."
+  }
+]

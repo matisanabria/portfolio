@@ -1,0 +1,50 @@
+---
+import {
+  siLaravel,
+  siAstro,
+  siReact,
+  siCloudflare,
+  siPhp,
+  siTypescript,
+  siMysql,
+  siTailwindcss,
+  siOpenjdk,
+} from "simple-icons";
+
+const tools = [
+  { icon: siLaravel,     name: "Laravel" },
+  { icon: siAstro,       name: "Astro" },
+  { icon: siReact,       name: "React" },
+  { icon: siCloudflare,  name: "Cloudflare" },
+  { icon: siPhp,         name: "PHP" },
+  { icon: siTypescript,  name: "TypeScript" },
+  { icon: siMysql,       name: "MySQL" },
+  { icon: siTailwindcss, name: "Tailwind" },
+  { icon: siOpenjdk,     name: "Java" },
+];
+
+// duplicate for seamless loop
+const doubled = [...tools, ...tools];
+---
+
+<div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+  <div
+    class="flex gap-10 w-max animate-marquee hover:[animation-play-state:paused] will-change-transform"
+    aria-hidden="true"
+  >
+    {doubled.map(({ icon, name }) => (
+      <div class="flex flex-col items-center gap-[6px] min-w-[52px] group cursor-default select-none">
+        <svg
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-7 h-7 opacity-40 group-hover:opacity-90 transition-opacity duration-200"
+          fill="currentColor"
+        >
+          <path d={icon.path} />
+        </svg>
+        <span class="font-mono text-[9px] tracking-[0.12em] uppercase text-muted opacity-60 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">{name}</span>
+      </div>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Web para OnBarber",
+    "tech": "Laravel · Astro · React · MariaDB",
+    "desc": "Landing page y plataforma de turnos para barbería. API REST, frontend con islands. En producción en Encarnación."
+  },
+  {
+    "name": "Barbman",
+    "tech": "Java 17 · SQLite · Hibernate",
+    "desc": "Sistema de gestión para barberías. Punto de venta, clientes, stock y reportes. En uso desde 2025."
+  },
+  {
+    "name": "Nuevo Proyecto",
+    "tech": "",
+    "desc": ""
+  },
+  {
+    "name": "POS MSystem",
+    "tech": "CodeIgniter 4 · MySQL",
+    "desc": "Punto de venta y gestión de inventario para tienda de celulares. Adaptado a medida desde Open Source Point of Sale."
+  }
+]

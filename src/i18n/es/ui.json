@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "cv": "Descargar CV"
+  },
+  "hero": {
+    "greeting": "Hola, soy ",
+    "italicName": "Matias Sanabria",
+    "sub": "Desarrollador Full Stack especializado en Laravel, experiencia en Sistemas Empresariales, enfocado en crear sistemas escalables.",
+    "cta1": "Ver proyectos",
+    "cta2": "Agendar reunión"
+  },
+  "stack": {
+    "label": "STACK & HERRAMIENTAS",
+    "items": ["Laravel", "Astro", "React", "Cloudflare", "PHP", "TypeScript", "MySQL", "Tailwind"]
+  },
+  "projects": {
+    "sectionLabel": "01 / PROYECTOS",
+    "heading": "Proyectos",
+    "headingItalic": "recientes",
+    "sub": "Una pequeña muestra. Para casos completos, hablemos.",
+    "repo": "Repo",
+    "private": "Privado",
+    "live": "Web ↗"
+  },
+  "experience": {
+    "sectionLabel": "02 / EXPERIENCIA",
+    "heading": "Mi",
+    "headingItalic": "experiencia",
+    "sub": "De los primeros proyectos al trabajo freelance actual."
+  },
+  "about": {
+    "sectionLabel": "03 / SOBRE MÍ",
+    "heading": "Un poco de",
+    "headingItalic": "contexto",
+    "bio": [
+      "Soy <strong>Matias Sanabria</strong>, tengo <strong>19 años</strong> y trabajo como desarrollador freelance desde Paraguay. Construyo sistemas y sitios web para negocios que quieren crecer.",
+      "Curso <em>Ingeniería en Informática</em> en la Universidad Católica, donde profundizo en análisis de sistemas, metodologías de desarrollo y diseño de software.",
+      "De forma autodidacta aprendí PHP y Laravel, y con el tiempo fui construyendo proyectos para clientes locales e internacionales."
+    ],
+    "stackLabel": "STACK",
+    "stack": [
+      { "area": "Backend", "name": "Laravel", "sub": "PHP framework", "detail": "APIs, paneles, lógica de negocio", "tags": ["Filament", "Livewire", "Sanctum"] },
+      { "area": "Frontend", "name": "Astro", "sub": "Web framework", "detail": "Sitios rápidos, SEO-friendly, Astro Islands", "tags": ["Astro", "Astro Islands", "Tailwind"] },
+      { "area": "UI", "name": "React", "sub": "UI library", "detail": "Dashboards, apps interactivas, Inertia.js", "tags": ["React", "TypeScript", "Vite"] },
+      { "area": "Infra", "name": "Cloudflare", "sub": "Edge platform", "detail": "Pages, Workers, R2, Tunnels, dominios", "tags": ["Pages", "Workers", "R2"] }
+    ]
+  },
+  "footer": {
+    "cta": "¿Tenés un proyecto en mente?",
+    "tagline": "Desarrollador freelance desde Encarnación, Paraguay. Disponible para nuevos proyectos.",
+    "navLabel": "NAVEGACIÓN",
+    "socialLabel": "REDES",
+    "contactLabel": "CONTACTO",
+    "navLinks": [
+      { "label": "Trabajo", "href": "#work" },
+      { "label": "Sobre mí", "href": "#about" },
+      { "label": "Contacto", "href": "#contact" }
+    ],
+    "socialLinks": [
+      { "label": "GitHub ↗", "href": "https://github.com/matisanabria" },
+      { "label": "LinkedIn ↗", "href": "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" }
+    ],
+    "contactLinks": [
+      { "label": "contacto@matisanabria.me", "href": "mailto:contacto@matisanabria.me" },
+      { "label": "Formulario ↗", "href": "#contact" },
+      { "label": "Encarnación, PY", "href": "#" }
+    ],
+    "copyright": "MATI SANABRIA — ENCARNACIÓN, PARAGUAY",
+    "available": "DISPONIBLE PARA PROYECTOS · GMT−3"
+  }
+}

@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   bare?: boolean;
+  lang?: "es" | "en";
 }
 
 const {
@@ -13,13 +14,14 @@ const {
   description = "Desarrollo web y sistemas para negocios que quieren crecer. Laravel · Astro · Cloudflare · React. Freelance desde Encarnación, Paraguay.",
   ogImage = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/og-image.webp",
   bare = false,
+  lang = "es",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, "https://matisanabria.me");
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,7 +52,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://matisanabria.me");
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={ogImage} />
-    <meta property="og:locale"      content="es_PY" />
+    <meta property="og:locale"      content={lang === "en" ? "en_US" : "es_PY"} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />

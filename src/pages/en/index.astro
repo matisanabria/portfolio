@@ -1,0 +1,73 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Hero from "../../components/Hero.astro";
+import Projects from "../../components/Projects.astro";
+import Experience from "../../components/Experience.astro";
+import About from "../../components/About.astro";
+import Contact from "../../components/Contact.astro";
+import Footer from "../../components/Footer.astro";
+
+import type { Project, ProjectData, ProjectTranslation, ExpEntry } from "../../i18n/types";
+import ui from "../../i18n/en/ui.json";
+import projectsBase from "../../data/projects.json";
+import projectsI18n from "../../i18n/en/projects.json";
+import experienceData from "../../i18n/en/experience.json";
+
+const projects = (projectsBase as ProjectData[]).map((p, i) => ({
+  ...p,
+  ...(projectsI18n as ProjectTranslation[])[i],
+})) as Project[];
+const experience = experienceData as ExpEntry[];
+---
+
+<Layout
+  title="Mati Sanabria — Freelance Developer"
+  description="Web development and systems for businesses that want to grow. Laravel · Astro · Cloudflare · React. Freelance from Encarnación, Paraguay."
+  lang="en"
+>
+  <Navbar t={ui.nav} lang="en" />
+
+  <main>
+    <Hero t={ui.hero} />
+
+    <!-- Stack strip -->
+    <div class="pt-5 pb-[60px]">
+      <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
+        <div class="grid grid-cols-[auto_1fr] gap-8 items-center border-t border-[var(--line)] pt-5 max-[760px]:grid-cols-1 max-[760px]:gap-[14px]">
+          <div class="font-mono text-[11px] tracking-[0.16em] uppercase text-muted whitespace-nowrap">{ui.stack.label}</div>
+          <div class="flex gap-8 items-center flex-wrap max-[760px]:gap-5">
+            {ui.stack.items.map((name) => (
+              <span class="text-[14px] font-medium text-ink opacity-60 tracking-[-0.01em] transition-opacity duration-200 hover:opacity-100">{name}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Projects items={projects} t={ui.projects} />
+    <Experience items={experience} t={ui.experience} />
+    <About t={ui.about} />
+    <Contact />
+  </main>
+
+  <Footer t={ui.footer} />
+</Layout>
+
+<!-- Scroll reveal observer -->
+<script>
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("on");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+  );
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>

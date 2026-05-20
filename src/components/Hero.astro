@@ -1,64 +1,114 @@
 ---
 import BackgroundBeams from "./BackgroundBeams.tsx";
+import HeroCard from "./HeroCard.tsx";
+
+interface Props {
+  t: {
+    prefix: string;
+    queWord: string;
+    italicWord: string;
+    sub: string;
+    stack: string;
+    cta1: string;
+    cta2: string;
+  };
+}
+
+const { t } = Astro.props;
 const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
 ---
 
-<header id="vanta-hero" class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px]">
+<header id="vanta-hero" class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px] [contain:paint]">
   <BackgroundBeams client:only="react" />
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
     <div class="relative z-10 grid grid-cols-[1.05fr_.95fr] gap-[60px] items-center max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
 
       <!-- Left -->
       <div>
-        <h1 class="text-[clamp(44px,6.4vw,88px)] leading-[.98] tracking-[-0.035em] font-semibold mb-6 text-ink text-balance">
-          Construyo sistemas<br />
-          que <span class="font-serif italic text-[1.05em] tracking-[-0.02em] text-ink inline-block translate-y-[0.06em]">realmente</span><br />
-          <span class="relative inline-block whitespace-nowrap after:content-[''] after:absolute after:[left:-0.06em] after:[right:-0.06em] after:[bottom:0.06em] after:[height:0.18em] after:bg-accent after:opacity-85 after:-z-10 after:rounded-sm">funcionan</span>.
+        <h1
+          id="hero-title"
+          data-greeting={t.greeting}
+          data-italic={t.italicName}
+          class="text-[clamp(44px,6.4vw,88px)] leading-[.98] tracking-[-0.035em] font-semibold mb-6 text-ink text-balance"
+        >
+          <span id="hero-g"></span><br />
+          <span id="hero-italic-wrap" class="relative font-serif italic text-[1.05em] tracking-[-0.02em] text-ink inline-block translate-y-[0.06em] whitespace-nowrap opacity-0 after:content-[''] after:absolute after:[left:-0.06em] after:[right:-0.06em] after:[bottom:-0.0em] after:[height:0.18em] after:bg-accent after:opacity-0 after:-z-10 after:rounded-sm after:transition-opacity after:duration-500"><span id="hero-i"></span></span><span id="hero-dot" class="opacity-0 transition-opacity duration-300">.</span>
         </h1>
 
         <p class="text-[18px] text-muted max-w-[520px] mb-8 leading-[1.6]">
-          Desarrollo web y sistemas para negocios que quieren crecer.<br />
-          Laravel · Astro · Cloudflare
+          {t.sub}<br />
         </p>
 
         <div class="flex gap-3 flex-wrap items-center">
           <a
-            class="group inline-flex items-center gap-[10px] px-[22px] py-[14px] rounded-full text-[14.5px] font-medium tracking-[-0.005em] bg-ink text-bg transition-[transform,background] duration-200 hover:bg-black hover:-translate-y-px"
+            class="group inline-flex items-center gap-[10px] px-[22px] py-[14px] rounded-full text-[14.5px] font-medium tracking-[-0.005em] bg-ink text-bg transition-[transform,background] duration-200 hover:bg-[#e0e0e0] hover:-translate-y-px"
             href="#work"
           >
-            Ver trabajos <span class="transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+            {t.cta1} <span class="transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
           </a>
           <a
             class="group inline-flex items-center gap-[10px] pl-2 pr-[22px] py-[14px] rounded-full text-[14.5px] font-medium tracking-[-0.005em] bg-transparent text-ink transition-colors duration-200 hover:text-accent"
             href="#contact"
           >
-            Agendar reunión <span class="transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+            {t.cta2} <span class="transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
           </a>
         </div>
       </div>
 
       <!-- Right: visual -->
-      <div
-        class="relative aspect-[4/4.3] rounded-[20px] overflow-hidden [background:radial-gradient(120%_80%_at_20%_0%,color-mix(in_oklab,var(--color-accent)_12%,transparent),transparent_60%),linear-gradient(180deg,#191D27,#0C0E12)] shadow-hero-visual max-[960px]:aspect-[4/2.6]"
-        role="img"
-        aria-label="Foto de perfil de Mati Sanabria"
-      >
-        <div class="absolute inset-0 [background-image:repeating-linear-gradient(45deg,rgba(16,18,22,.045)_0_1px,transparent_1px_14px)] mix-blend-multiply"></div>
-
-        <img
-          src="/hero.webp"
-          alt="Mati Sanabria"
-          class="absolute inset-0 w-full h-full object-cover object-top"
-          loading="eager"
-          decoding="async"
-        />
-
-        <div class="absolute left-7 right-7 bottom-7 font-serif italic text-[clamp(56px,9vw,96px)] leading-[0.9] tracking-[-0.04em] text-ink text-balance">
-          Mati<br /><span class="text-[color-mix(in_oklab,var(--color-ink)_25%,transparent)]">Sanabria</span>
-        </div>
-      </div>
+      <HeroCard client:load />
 
     </div>
   </div>
 </header>
+
+<script>
+  const h1 = document.getElementById("hero-title") as HTMLElement;
+  const gEl = document.getElementById("hero-g") as HTMLElement;
+  const iWrap = document.getElementById("hero-italic-wrap") as HTMLElement;
+  const iEl = document.getElementById("hero-i") as HTMLElement;
+  const dotEl = document.getElementById("hero-dot") as HTMLElement;
+
+  const greeting = h1.dataset.greeting ?? "";
+  const italic = h1.dataset.italic ?? "";
+
+  const cursor = document.createElement("span");
+  cursor.textContent = "|";
+  cursor.className = "animate-blink text-accent ml-[0.05em]";
+
+  function type(target: HTMLElement, text: string, delay: number): Promise<void> {
+    return new Promise((resolve) => {
+      let i = 0;
+      target.appendChild(cursor);
+      const tick = () => {
+        if (i < text.length) {
+          target.insertBefore(document.createTextNode(text[i]), cursor);
+          i++;
+          setTimeout(tick, delay);
+        } else {
+          resolve();
+        }
+      };
+      setTimeout(tick, delay);
+    });
+  }
+
+  async function run() {
+    await type(gEl, greeting, 55);
+    // pausa entre líneas
+    await new Promise(r => setTimeout(r, 180));
+    iWrap.classList.remove("opacity-0");
+    await type(iEl, italic, 55);
+    // mostrar subrayado y punto
+    iWrap.classList.add("after:opacity-85");
+    dotEl.classList.remove("opacity-0");
+    // cursor parpadea 3s luego desaparece
+    await new Promise(r => setTimeout(r, 3000));
+    cursor.style.transition = "opacity 0.4s";
+    cursor.style.opacity = "0";
+    setTimeout(() => cursor.remove(), 400);
+  }
+
+  run();
+</script>
 
