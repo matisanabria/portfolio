@@ -1,22 +1,21 @@
 [
   {
-    "period": "2024 — present",
-    "mode": "Full-time",
-    "role": "Freelance Developer",
-    "company": "Independent",
-    "location": "Encarnación, PY · Remote",
-    "desc": "Building custom systems and websites for clients in Paraguay and the region. End-to-end: backend in Laravel, frontend with Astro and React, infrastructure on Cloudflare.",
-    "tags": ["Laravel", "Astro", "React", "Cloudflare"],
+    "period": "2024, Present",
+    "mode": "Remote",
+    "role": "Full Stack Developer",
+    "company": "Freelance",
+    "desc": "Development of web platforms and custom systems for clients. Admin panel design, SEO optimization, and VPS deployment with Docker. Full stack work with Laravel, React, Astro, and Cloudflare.",
+    "tags": ["Architecture", "SEO", "Scalability", "Infra"],
     "active": true
   },
   {
-    "period": "April 2024 — January 2026",
+    "period": "April 2024, January 2026",
     "mode": "On-site",
-    "role": "IT Technician",
+    "role": "IT Support Technician",
     "company": "MX Informática",
     "location": "Encarnación, PY",
-    "desc": "Technical support for users and businesses. Hardware diagnosis and repair, preventive and corrective maintenance, OS and software installation and configuration.",
-    "tags": ["Hardware", "Support", "Windows"],
+    "desc": "Troubleshooting and resolution of hardware, software, and network incidents. Infrastructure configuration including switches and local servers. On-site technical support in high-demand environments.",
+    "tags": ["Hardware", "Support", "Networking", "Servers"],
     "active": false
   }
 ]

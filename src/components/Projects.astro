@@ -1,4 +1,5 @@
 ---
+import tailwindcss from "@tailwindcss/vite";
 import type { Project } from "../i18n/types";
 import {
   siLaravel,
@@ -10,6 +11,11 @@ import {
   siCodeigniter,
   siMysql,
   siOpenjdk,
+  siFlyway,
+  siApachemaven,
+  siPhp,
+  siCloudflare,
+  siTailwindcss,
 } from "simple-icons";
 
 interface Props {
@@ -27,148 +33,172 @@ interface Props {
 
 const { items: projects, t } = Astro.props;
 
-const TECH_ICONS: Record<string, { path: string; hex: string }> = {
-  "Laravel":       { path: siLaravel.path,    hex: siLaravel.hex },
-  "Astro":         { path: siAstro.path,       hex: siAstro.hex },
-  "React":         { path: siReact.path,       hex: siReact.hex },
-  "MariaDB":       { path: siMariadb.path,     hex: siMariadb.hex },
-  "SQLite":        { path: siSqlite.path,      hex: siSqlite.hex },
-  "Hibernate":     { path: siHibernate.path,   hex: siHibernate.hex },
-  "CodeIgniter 4": { path: siCodeigniter.path, hex: siCodeigniter.hex },
-  "MySQL":         { path: siMysql.path,       hex: siMysql.hex },
-  "Java 17":       { path: siOpenjdk.path,     hex: siOpenjdk.hex },
-};
-
-const colClass: Record<Project["col"], string> = {
-  "col-7":  "col-span-7 max-[880px]:col-span-12",
-  "col-5":  "col-span-5 max-[880px]:col-span-12",
-  "col-12": "col-span-12",
+const TECH_ICONS: Record<string, { path: string; hex: string; name: string }> = {
+  laravel:     { path: siLaravel.path,    hex: siLaravel.hex,    name: "Laravel"     },
+  astro:       { path: siAstro.path,      hex: siAstro.hex,      name: "Astro"       },
+  react:       { path: siReact.path,      hex: siReact.hex,      name: "React"       },
+  mariadb:     { path: siMariadb.path,    hex: siMariadb.hex,    name: "MariaDB"     },
+  sqlite:      { path: siSqlite.path,     hex: siSqlite.hex,     name: "SQLite"      },
+  hibernate:   { path: siHibernate.path,  hex: siHibernate.hex,  name: "Hibernate"   },
+  codeigniter: { path: siCodeigniter.path,hex: siCodeigniter.hex,name: "CodeIgniter" },
+  mysql:       { path: siMysql.path,      hex: siMysql.hex,      name: "MySQL"       },
+  java:        { path: siOpenjdk.path,    hex: siOpenjdk.hex,    name: "Java"        },
+  flyway:      { path: siFlyway.path,     hex: siFlyway.hex,     name: "Flyway"      },
+  maven:       { path: siApachemaven.path, hex: siApachemaven.hex, name: "Maven"      },
+  php:         { path: siPhp.path,         hex: siPhp.hex,         name: "PHP"        },
+  cloudflare: { path: siCloudflare.path,  hex: siCloudflare.hex,  name: "Cloudflare"  },
+  tailwindcss: { path: siTailwindcss.path,  hex: siTailwindcss.hex,  name: "Tailwind CSS" },
 };
 ---
 
 <section id="work" class="relative py-[96px] border-t border-[var(--line)]">
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
 
-    <!-- Section header — grid 1fr auto matching design -->
+    <!-- Section header -->
     <div class="grid grid-cols-[1fr_auto] gap-7 items-end mb-14 max-[760px]:grid-cols-1">
       <div>
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted mb-[14px]">{t.sectionLabel}</div>
         <h2 class="text-[clamp(38px,4.6vw,64px)] font-semibold tracking-[-0.03em] text-ink leading-none m-0">
-          {t.heading} <span class="font-serif italic">{t.headingItalic}</span>.
+          {t.heading} <span class="font-serif italic text-accent">{t.headingItalic}</span>.
         </h2>
       </div>
-      <p class="text-[15px] text-muted max-w-[38ch] leading-[1.5]">{t.sub}</p>
     </div>
 
-    <!-- Work grid -->
-    <div class="grid grid-cols-12 gap-6">
+    <!-- Project list -->
+    <ol class="list-none m-0 p-0 border-t border-[var(--line)]">
       {projects.map((p, i) => {
-        const techList = p.tech.split(" · ");
+        const techList = p.tech ?? [];
+        const index = String(i + 1).padStart(2, "0");
         return (
-          <article class:list={[
-            "group flex flex-col rounded-[28px] overflow-hidden",
-            "bg-bg2 border border-[var(--line-2)]",
-            "[transition:transform_.5s_cubic-bezier(.22,1,.36,1),box-shadow_.5s_cubic-bezier(.22,1,.36,1),border-color_.5s_ease]",
-            "hover:-translate-y-[2px] hover:shadow-[0_12px_32px_-16px_rgba(16,18,22,.35)] hover:border-[var(--line)]",
-            colClass[p.col],
-          ]}>
+          <li
+            data-project-row
+            class="group border-b border-[var(--line)] cursor-pointer hover:bg-[var(--color-bg2)] [&[data-open]]:bg-[var(--color-bg2)] transition-colors duration-200"
+          >
+            <!-- Collapsed header -->
+            <div
+              data-project-toggle
+              class="flex items-center gap-5 py-7 px-2 max-[480px]:gap-3 max-[480px]:py-5"
+            >
+              <!-- Index -->
+              <span class="font-mono text-[11px] text-muted/35 w-6 flex-shrink-0 select-none leading-none">
+                {index}
+              </span>
 
-            <!-- Image: flex-1 → fills remaining space, adapts to card height -->
-            <div class="flex-1 min-h-[110px] relative overflow-hidden">
-              <img
-                src={p.img}
-                alt={p.name}
-                loading={i === 0 ? "eager" : "lazy"}
-                fetchpriority={i === 0 ? "high" : "auto"}
-                decoding={i === 0 ? "sync" : "async"}
-                width="1200"
-                height="750"
-                class="w-full h-full object-cover [transition:transform_.6s_cubic-bezier(.22,1,.36,1),opacity_.5s_ease] opacity-85 group-hover:scale-[1.012] group-hover:opacity-95"
-              />
+              <!-- Name -->
+              <h3 class="flex-1 min-w-0 m-0 text-[clamp(22px,2.8vw,40px)] font-bold tracking-[-0.03em] text-ink leading-none [transition:translate_400ms_ease-in-out] group-hover:translate-x-[5px]">
+                {p.name}
+              </h3>
+
+              <!-- Type + chevron -->
+              <div class="flex items-center gap-5 flex-shrink-0 max-[480px]:gap-3">
+                <span class="font-mono text-[11px] text-muted max-[600px]:hidden">{p.type}</span>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-muted/50 flex-shrink-0 [transition:rotate_300ms_ease-out] [li[data-open]_&]:rotate-180"
+                >
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
             </div>
 
-            <!-- Body: flex-shrink-0 → always same height, never pushed by image -->
-            <div class="flex-shrink-0 p-[22px_24px_26px] flex justify-between gap-6 items-end max-[560px]:flex-col max-[560px]:items-start max-[560px]:gap-4">
+            <!-- Expandable panel -->
+            <div class="grid grid-rows-[0fr] [li[data-open]_&]:grid-rows-[1fr] transition-[grid-template-rows] duration-400 [transition-timing-function:cubic-bezier(.22,1,.36,1)]">
+              <div class="overflow-hidden">
+                <div class="flex gap-14 pl-11 pr-2 pb-9 pt-1 max-[640px]:flex-col max-[640px]:gap-6 max-[480px]:pl-0">
 
-              <!-- Left: tech icons + name + desc -->
-              <div class="min-w-0">
-                <!-- tech icons row (replaces .meta mono text) -->
-                <div class="flex items-center gap-[10px] flex-wrap mb-[6px]">
-                  {techList.map((tech) => {
-                    const icon = TECH_ICONS[tech];
-                    return icon ? (
-                      <div class="relative group/icon">
-                        <svg
-                          width="13"
-                          height="13"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                          style={`fill: #${icon.hex}; opacity: 0.45;`}
-                          class="[transition:opacity_.2s_ease] group-hover/icon:!opacity-85"
-                        >
-                          <path d={icon.path} />
-                        </svg>
-                        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-[6px] font-mono text-[9px] px-[7px] py-[2.5px] rounded-full bg-bg2 border border-[var(--line)] text-muted whitespace-nowrap opacity-0 pointer-events-none [transition:opacity_.15s_ease] group-hover/icon:opacity-100 z-10">
-                          {tech}
+                  <!-- Left: tech icons -->
+                  {techList.length > 0 && (
+                    <div class="grid grid-cols-[repeat(auto-fill,minmax(48px,1fr))] gap-x-3 gap-y-4 w-[140px] flex-shrink-0 max-[640px]:w-auto max-[640px]:flex max-[640px]:flex-wrap">
+                      {techList.map((tech) => {
+                        const icon = TECH_ICONS[tech];
+                        return icon ? (
+                          <div class="relative group/icon flex flex-col items-center gap-[5px]">
+                            <svg
+                              width="22"
+                              height="22"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                              style={`fill: #${icon.hex}; opacity: 0.6;`}
+                              class="[transition:opacity_.2s_ease] group-hover/icon:!opacity-95"
+                            >
+                              <path d={icon.path} />
+                            </svg>
+                            <span class="font-mono text-[8px] tracking-[0.08em] text-muted/50 group-hover/icon:text-muted transition-colors duration-150 whitespace-nowrap">
+                              {icon.name}
+                            </span>
+                          </div>
+                        ) : (
+                          <span class="font-mono text-[9px] text-muted/50">{tech}</span>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  <!-- Right: desc + links -->
+                  <div class="flex flex-col gap-5 flex-1 min-w-0">
+                    {p.desc && (
+                      <p class="m-0 text-[14px] text-muted leading-[1.65] max-w-[52ch]">
+                        {p.desc}
+                      </p>
+                    )}
+
+                    <!-- Links -->
+                    <div class="flex items-center gap-5">
+                      {p.repo && (
+                        <a href={p.repo} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-[6px] text-muted hover:text-ink transition-colors duration-200">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="flex-shrink-0">
+                            <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.7 18.3.5 12 .5z"/>
+                          </svg>
+                          <span class="text-[10px] uppercase tracking-[0.12em]">{t.repo}</span>
+                        </a>
+                      )}
+                      {!p.repo && (
+                        <span class="flex items-center gap-[6px] text-muted opacity-20 cursor-default">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="flex-shrink-0">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                          </svg>
+                          <span class="text-[10px] uppercase tracking-[0.12em]">{t.private}</span>
                         </span>
-                      </div>
-                    ) : (
-                      <span class="font-mono text-[9px] px-[7px] py-[2px] rounded-full border border-[var(--line)] text-muted/60">
-                        {tech}
-                      </span>
-                    );
-                  })}
-                </div>
+                      )}
+                      {p.live && (
+                        <a href={p.live} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-[6px] text-accent hover:text-accent/80 transition-colors duration-200">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="flex-shrink-0">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                          </svg>
+                          <span class="text-[10px] uppercase tracking-[0.12em]">{t.live}</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
 
-                <h3 class="m-0 text-[22px] tracking-[-0.02em] font-semibold text-ink">{p.name}</h3>
-                <p class="mt-[5px] text-[13px] text-muted leading-[1.55] max-w-[54ch] line-clamp-2">{p.desc}</p>
-              </div>
-
-              <!-- Right: year + links -->
-              <div class="flex flex-col items-end gap-[8px] flex-shrink-0 max-[560px]:items-start max-[560px]:flex-row max-[560px]:flex-wrap">
-                <span class="font-mono text-[12px] text-muted">{p.year}</span>
-                <div class="flex gap-[5px] items-center">
-                  {p.repo && (
-                    <a
-                      href={p.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-[5px] font-mono text-[10.5px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-muted [transition:color_.2s_ease,border-color_.2s_ease] hover:text-ink hover:border-[rgba(238,233,223,.3)]"
-                    >
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.7 18.3.5 12 .5z"/>
-                      </svg>
-                      {t.repo}
-                    </a>
-                  )}
-                  {!p.repo && (
-                    <span class="inline-flex items-center gap-[5px] font-mono text-[10.5px] px-[10px] py-[5px] rounded-full border border-[var(--line)] text-muted opacity-35 cursor-default">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <rect x="3" y="11" width="18" height="11" rx="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                      </svg>
-                      {t.private}
-                    </span>
-                  )}
-                  {p.live && (
-                    <a
-                      href={p.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-[5px] font-mono text-[10.5px] px-[10px] py-[5px] rounded-full border border-[color-mix(in_oklab,var(--color-accent)_28%,transparent)] text-accent [transition:border-color_.2s_ease,box-shadow_.2s_ease] hover:border-accent hover:shadow-[0_0_10px_color-mix(in_oklab,var(--color-accent)_18%,transparent)]"
-                    >
-                      <span class="w-[5px] h-[5px] rounded-full bg-accent animate-pulse-dot"></span>
-                      {t.live}
-                    </a>
-                  )}
                 </div>
               </div>
-
             </div>
-          </article>
+
+          </li>
         );
       })}
-    </div>
+    </ol>
 
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-project-row]').forEach(row => {
+    row.querySelector('[data-project-toggle]')?.addEventListener('click', () => {
+      const isOpen = row.hasAttribute('data-open');
+      document.querySelectorAll('[data-project-row][data-open]').forEach(r => r.removeAttribute('data-open'));
+      if (!isOpen) row.setAttribute('data-open', '');
+    });
+    row.querySelectorAll('a').forEach(a => a.addEventListener('click', e => e.stopPropagation()));
+  });
+</script>

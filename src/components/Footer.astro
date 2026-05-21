@@ -31,7 +31,7 @@ const year = new Date().getFullYear();
           class="w-[46px] h-[46px] rounded-xl bg-accent text-[#0A1A1F] grid place-items-center font-serif italic text-[30px] leading-none tracking-[-0.02em] mb-[18px]"
           aria-hidden="true"
         >M</div>
-        <h3 class="text-[28px] tracking-[-0.02em] mb-3 font-semibold text-white max-w-[14ch] leading-[1.1]">{t.cta}</h3>
+        <h3 class="text-[28px] tracking-[-0.02em] mb-3 font-semibold text-white max-w-[14ch] leading-[1.1]">{t.footerName}</h3>
         <p class="text-[rgba(255,255,255,.6)] text-[14px] max-w-[32ch] leading-[1.55]">{t.tagline}</p>
       </div>
 
@@ -50,7 +50,12 @@ const year = new Date().getFullYear();
         <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">{t.socialLabel}</h4>
         <ul class="list-none m-0 p-0 grid gap-[10px]">
           {t.socialLinks.map((l) => (
-            <li><a class="text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+            <li>
+              <a class="inline-flex items-center gap-[5px] text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent" href={l.href} target="_blank" rel="noopener noreferrer">
+                {l.label}
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </li>
           ))}
         </ul>
       </div>
@@ -59,9 +64,23 @@ const year = new Date().getFullYear();
       <div>
         <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-[rgba(255,255,255,.4)] mt-[6px] mb-[14px] font-medium">{t.contactLabel}</h4>
         <ul class="list-none m-0 p-0 grid gap-[10px]">
-          {t.contactLinks.map((l) => (
-            <li><a class="text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent" href={l.href}>{l.label}</a></li>
-          ))}
+          {t.contactLinks.map((l) => {
+            const isExternal = l.href.startsWith("http") || l.href.startsWith("mailto");
+            return (
+              <li>
+                <a
+                  class="inline-flex items-center gap-[5px] text-[14px] text-[rgba(255,255,255,.85)] transition-colors duration-200 hover:text-accent"
+                  href={l.href}
+                  {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {l.label}
+                  {isExternal && (
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
@@ -69,10 +88,26 @@ const year = new Date().getFullYear();
     <div class="flex justify-between items-center pt-6 gap-5 flex-wrap font-mono text-[11px] text-[rgba(255,255,255,.45)] tracking-[0.08em] max-[560px]:flex-col max-[560px]:text-center">
       <div>© {year} {t.copyright}</div>
       <div class="inline-flex items-center gap-2">
-        <span class="w-[6px] h-[6px] rounded-full bg-[#7BE7A7] shadow-[0_0_0_4px_rgba(123,231,167,.22)] animate-glow" aria-hidden="true"></span>
-        {t.available}
+        <span id="footer-clock">——:——</span>
       </div>
     </div>
 
   </div>
 </footer>
+
+<script>
+  function tick() {
+    const el = document.getElementById("footer-clock");
+    if (!el) return;
+    const now = new Date();
+    const time = now.toLocaleTimeString("en-US", {
+      timeZone: "America/Argentina/Buenos_Aires",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    el.textContent = `${time} (GMT-3)`;
+  }
+  tick();
+  setInterval(tick, 60_000);
+</script>

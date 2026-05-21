@@ -9,6 +9,7 @@ import Experience from "../../components/Experience.astro";
 import About from "../../components/About.astro";
 import Contact from "../../components/Contact.astro";
 import Footer from "../../components/Footer.astro";
+import StackMarquee from "../../components/StackMarquee.astro";
 
 import type { Project, ProjectData, ProjectTranslation, ExpEntry } from "../../i18n/types";
 import ui from "../../i18n/en/ui.json";
@@ -16,9 +17,9 @@ import projectsBase from "../../data/projects.json";
 import projectsI18n from "../../i18n/en/projects.json";
 import experienceData from "../../i18n/en/experience.json";
 
-const projects = (projectsBase as ProjectData[]).map((p, i) => ({
+const projects = (projectsBase as ProjectData[]).map((p) => ({
   ...p,
-  ...(projectsI18n as ProjectTranslation[])[i],
+  ...(projectsI18n as ProjectTranslation[]).find((t) => t.id === p.id),
 })) as Project[];
 const experience = experienceData as ExpEntry[];
 ---
@@ -36,13 +37,9 @@ const experience = experienceData as ExpEntry[];
     <!-- Stack strip -->
     <div class="pt-5 pb-[60px]">
       <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
-        <div class="grid grid-cols-[auto_1fr] gap-8 items-center border-t border-[var(--line)] pt-5 max-[760px]:grid-cols-1 max-[760px]:gap-[14px]">
-          <div class="font-mono text-[11px] tracking-[0.16em] uppercase text-muted whitespace-nowrap">{ui.stack.label}</div>
-          <div class="flex gap-8 items-center flex-wrap max-[760px]:gap-5">
-            {ui.stack.items.map((name) => (
-              <span class="text-[14px] font-medium text-ink opacity-60 tracking-[-0.01em] transition-opacity duration-200 hover:opacity-100">{name}</span>
-            ))}
-          </div>
+        <div class="border-t border-[var(--line)] pt-6 flex flex-col gap-5">
+          <div class="font-mono text-[11px] tracking-[0.16em] uppercase text-muted">{ui.stack.label}</div>
+          <StackMarquee />
         </div>
       </div>
     </div>
@@ -50,7 +47,7 @@ const experience = experienceData as ExpEntry[];
     <Projects items={projects} t={ui.projects} />
     <Experience items={experience} t={ui.experience} />
     <About t={ui.about} />
-    <Contact />
+    <Contact t={ui.contact} />
   </main>
 
   <Footer t={ui.footer} />

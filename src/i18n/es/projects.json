@@ -1,22 +1,26 @@
 [
   {
-    "name": "Web para OnBarber",
-    "tech": "Laravel · Astro · React · MariaDB",
-    "desc": "Landing page y plataforma de turnos para barbería. API REST, frontend con islands. En producción en Encarnación."
+    "id": "fcyt",
+    "name": "Web para FaCyT",
+    "type": "Landing & Portal",
+    "desc": "Landing page, portal de noticias y galería de fotos para la Facultad de Ciencia y Tecnología de la Universidad Católica campus Itapúa. Hecho con Astro, Tailwind CSS. El Backoffice que usa el Centro de Estudiantes para gestionar noticias y fotos está hecho con Laravel y Filament."
   },
   {
+    "id": "onbarber",
+    "name": "Web para ONBarber",
+    "type": "Landing & Reservas",
+    "desc": "Landing page y Reserva de Turnos para una barbería en Encarnación, Paraguay llamada ONBarber. API REST con Laravel, frontend Astro y React."
+  },
+  {
+    "id": "barbman",
     "name": "Barbman",
-    "tech": "Java 17 · SQLite · Hibernate",
-    "desc": "Sistema de gestión para barberías. Punto de venta, clientes, stock y reportes. En uso desde 2025."
+    "type": "App de Escritorio",
+    "desc": "Sistema de gestión para pequeños negocios. Punto de venta, gestion de clientes y empleados, gestion de inventario, reportes, administrador de sueldos, gestión de caja y reserva de turnos. Hecho en Java 17 y JavaFX."
   },
   {
-    "name": "Nuevo Proyecto",
-    "tech": "",
-    "desc": ""
-  },
-  {
+    "id": "msystem",
     "name": "POS MSystem",
-    "tech": "CodeIgniter 4 · MySQL",
-    "desc": "Punto de venta y gestión de inventario para tienda de celulares. Adaptado a medida desde Open Source Point of Sale."
+    "type": "Punto de Venta",
+    "desc": "Punto de venta, gestión de inventario, gestion de garantía, fichas técnicas, reportes para tienda de celulares en Asunción, Paraguay. Utiliza Cloudflare Tunnel para que el cliente pueda acceder desde cualquier lugar, actualmente se utiliza en dos sucursales. Fork de OpenSourcePOS."
   }
 ]

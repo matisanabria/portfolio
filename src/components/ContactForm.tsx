@@ -2,7 +2,19 @@ import { useState } from "react";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
-export default function ContactForm() {
+interface FormT {
+  nameLabel: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  submit: string;
+  submitting: string;
+  success: string;
+  disclaimer: string;
+}
+
+export default function ContactForm({ t }: { t: FormT }) {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
 
@@ -27,14 +39,14 @@ export default function ContactForm() {
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error((body as { error?: string }).error ?? "Error al enviar");
+        throw new Error((body as { error?: string }).error ?? t.submit);
       }
 
       setState("success");
       form.reset();
     } catch (err) {
       setState("error");
-      setError(err instanceof Error ? err.message : "Algo salió mal. Intentá de nuevo.");
+      setError(err instanceof Error ? err.message : t.submit);
     }
   }
 
@@ -46,7 +58,7 @@ export default function ContactForm() {
     >
       {state === "success" && (
         <div className="px-[18px] py-4 rounded-[12px] mb-[18px] bg-[color-mix(in_oklab,var(--color-accent2)_20%,transparent)] text-accent border border-[color-mix(in_oklab,var(--color-accent)_20%,transparent)] text-[14px]">
-          ✓ ¡Mensaje enviado! Te respondo en menos de 24h.
+          ✓ {t.success}
         </div>
       )}
 
@@ -58,12 +70,12 @@ export default function ContactForm() {
 
       <div className="mb-[18px]">
         <label className="block text-[13px] text-ink font-medium mb-2">
-          Nombre <span className="text-accent">*</span>
+          {t.nameLabel} <span className="text-accent">*</span>
         </label>
         <input
           type="text"
           name="name"
-          placeholder="Tu nombre"
+          placeholder={t.namePlaceholder}
           required
           className="w-full font-sans text-[14.5px] text-ink bg-[#1C2030] border border-[var(--line)] rounded-[10px] px-[14px] py-[13px] outline-none [transition:border-color_.2s_ease,background_.2s_ease,box-shadow_.2s_ease] focus:border-accent focus:bg-[#20253A] focus:shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-accent)_12%,transparent)]"
         />
@@ -76,7 +88,7 @@ export default function ContactForm() {
         <input
           type="email"
           name="email"
-          placeholder="tu@email.com"
+          placeholder={t.emailPlaceholder}
           required
           className="w-full font-sans text-[14.5px] text-ink bg-[#1C2030] border border-[var(--line)] rounded-[10px] px-[14px] py-[13px] outline-none [transition:border-color_.2s_ease,background_.2s_ease,box-shadow_.2s_ease] focus:border-accent focus:bg-[#20253A] focus:shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-accent)_12%,transparent)]"
         />
@@ -84,11 +96,11 @@ export default function ContactForm() {
 
       <div className="mb-[22px]">
         <label className="block text-[13px] text-ink font-medium mb-2">
-          Mensaje <span className="text-accent">*</span>
+          {t.messageLabel} <span className="text-accent">*</span>
         </label>
         <textarea
           name="message"
-          placeholder="Contame qué necesitás — funcionalidades, objetivos, plazos…"
+          placeholder={t.messagePlaceholder}
           required
           rows={5}
           className="w-full font-sans text-[14.5px] text-ink bg-[#1C2030] border border-[var(--line)] rounded-[10px] px-[14px] py-[13px] outline-none resize-y min-h-[120px] [transition:border-color_.2s_ease,background_.2s_ease,box-shadow_.2s_ease] focus:border-accent focus:bg-[#20253A] focus:shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-accent)_12%,transparent)]"
@@ -98,17 +110,17 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={state === "loading"}
-        className={`w-full rounded-[12px] px-[18px] py-[15px] font-bold text-[15px] tracking-[-0.005em] text-[#0A1A1F] border-none transition-[background,transform] duration-200 ${
+        className={`w-full rounded-[12px] px-[18px] py-[15px] font-bold text-[15px] tracking-[-0.005em] text-[#0A1A1F] border-none transition-[background,translate] duration-200 ${
           state === "loading"
             ? "bg-[color-mix(in_oklab,var(--color-accent)_60%,transparent)] cursor-not-allowed"
             : "bg-accent cursor-pointer hover:-translate-y-px"
         }`}
       >
-        {state === "loading" ? "Enviando…" : "Enviar mensaje"}
+        {state === "loading" ? t.submitting : t.submit}
       </button>
 
       <p className="text-center text-[12px] text-muted mt-[14px]">
-        Al enviar, aceptás que te contacte sobre tu consulta.
+        {t.disclaimer}
       </p>
     </form>
   );

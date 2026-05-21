@@ -4,7 +4,8 @@
     "experience": "Experiencia",
     "about": "Sobre mí",
     "contact": "Contacto",
-    "cv": "Descargar CV"
+    "cv": "Descargar CV",
+    "cvUrl": "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria-es.pdf"
   },
   "hero": {
     "greeting": "Hola, soy ",
@@ -21,7 +22,6 @@
     "sectionLabel": "01 / PROYECTOS",
     "heading": "Proyectos",
     "headingItalic": "recientes",
-    "sub": "Una pequeña muestra. Para casos completos, hablemos.",
     "repo": "Repo",
     "private": "Privado",
     "live": "Web ↗"
@@ -29,8 +29,7 @@
   "experience": {
     "sectionLabel": "02 / EXPERIENCIA",
     "heading": "Mi",
-    "headingItalic": "experiencia",
-    "sub": "De los primeros proyectos al trabajo freelance actual."
+    "headingItalic": "experiencia"
   },
   "about": {
     "sectionLabel": "03 / SOBRE MÍ",
@@ -43,14 +42,35 @@
     ],
     "stackLabel": "STACK",
     "stack": [
-      { "area": "Backend", "name": "Laravel", "sub": "PHP framework", "detail": "APIs, paneles, lógica de negocio", "tags": ["Filament", "Livewire", "Sanctum"] },
-      { "area": "Frontend", "name": "Astro", "sub": "Web framework", "detail": "Sitios rápidos, SEO-friendly, Astro Islands", "tags": ["Astro", "Astro Islands", "Tailwind"] },
-      { "area": "UI", "name": "React", "sub": "UI library", "detail": "Dashboards, apps interactivas, Inertia.js", "tags": ["React", "TypeScript", "Vite"] },
-      { "area": "Infra", "name": "Cloudflare", "sub": "Edge platform", "detail": "Pages, Workers, R2, Tunnels, dominios", "tags": ["Pages", "Workers", "R2"] }
+      { "area": "Backend", "name": "Backend Engineering", "sub": "Logica de negocio, APIs", "detail": "Arquitectura de negocio, paneles administrativos y automatización.", "tags": ["Laravel", "APIs REST", "Auth"] },
+      { "area": "Frontend", "name": "Frontend Systems", "sub": "Interfaces Interactivas", "detail": "Interfaces rápidas y enfocadas en experiencia de usuario y SEO.", "tags": ["Astro", "React", "Tailwind"] },
+      { "area": "Infra", "name": "Infrastructure", "sub": "Despliegue y Servicios Edge", "detail": "Despliegue de aplicaciones, redes, túneles y servicios distribuidos en la nube.", "tags": ["Docker", "Cloudflare", "VPS"] },
+      { "area": "DB", "name": "Database Design", "sub": "Modelado y Persistencia de BD", "detail": "Diseño de estructuras escalables, relaciones y optimización de consultas.", "tags": ["PostgreSQL", "MySQL", "JPA"] }
     ]
   },
+  "contact": {
+    "sectionLabel": "04 / CONTACTO",
+    "heading": "Construyamos algo",
+    "headingItalic": "juntos",
+    "sub": "Desarrollo software, sistemas e infraestructura para proyectos. Si tenés una idea o proyecto, hablemos.",
+    "stepsLabel": "¿QUÉ PASA DESPUÉS?",
+    "steps": ["Me contás tu proyecto", "Te respondo en menos de 24h", "Llamada breve para alinear", "Definimos cómo trabajar juntos"],
+    "directLabel": "¿Preferís escribir directo?",
+    "email": "contacto@matisanabria.me",
+    "form": {
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu@email.com",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Contame qué necesitás — funcionalidades, objetivos, plazos…",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando…",
+      "success": "¡Mensaje enviado! Te respondo en menos de 24h.",
+      "disclaimer": "Al enviar, aceptás que te contacte sobre tu consulta."
+    }
+  },
   "footer": {
-    "cta": "¿Tenés un proyecto en mente?",
+    "footerName": "Matias Sanabria",
     "tagline": "Desarrollador freelance desde Encarnación, Paraguay. Disponible para nuevos proyectos.",
     "navLabel": "NAVEGACIÓN",
     "socialLabel": "REDES",
@@ -61,15 +81,15 @@
       { "label": "Contacto", "href": "#contact" }
     ],
     "socialLinks": [
-      { "label": "GitHub ↗", "href": "https://github.com/matisanabria" },
-      { "label": "LinkedIn ↗", "href": "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" }
+      { "label": "GitHub", "href": "https://github.com/matisanabria" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" }
     ],
     "contactLinks": [
       { "label": "contacto@matisanabria.me", "href": "mailto:contacto@matisanabria.me" },
-      { "label": "Formulario ↗", "href": "#contact" },
+      { "label": "Formulario", "href": "#contact" },
       { "label": "Encarnación, PY", "href": "#" }
     ],
-    "copyright": "MATI SANABRIA — ENCARNACIÓN, PARAGUAY",
-    "available": "DISPONIBLE PARA PROYECTOS · GMT−3"
+    "copyright": "MATI SANABRIA",
+    "available": "GMT−3"
   }
 }

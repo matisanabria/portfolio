@@ -21,7 +21,7 @@ const { items: experience, t } = Astro.props;
       <div>
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">{t.sectionLabel}</div>
         <h2 class="text-[clamp(40px,5.5vw,72px)] font-semibold tracking-[-0.03em] text-ink leading-none mt-2">
-          {t.heading} <span class="font-serif italic">{t.headingItalic}</span>.
+          {t.heading} <span class="font-serif italic text-accent">{t.headingItalic}</span>.
         </h2>
       </div>
       <p class="text-[15px] text-muted max-w-[40ch] leading-[1.5]">{t.sub}</p>
@@ -35,9 +35,6 @@ const { items: experience, t } = Astro.props;
         >
           <!-- Period / mode -->
           <div class="font-mono text-[11px] tracking-[0.04em] text-muted leading-[1.6] max-[960px]:col-span-full max-[960px]:order-first">
-            {e.active && (
-              <span class="inline-block w-[6px] h-[6px] rounded-full bg-accent shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-accent)_20%,transparent)] animate-pulse-dot mr-2 align-middle"></span>
-            )}
             {e.period}
             <span class="block text-[color-mix(in_oklab,var(--color-muted)_70%,transparent)] mt-[2px]">{e.mode}</span>
           </div>

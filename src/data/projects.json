@@ -1,25 +1,23 @@
 [
   {
-    "img": "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/onbarber-image.webp",
+    "id": "fcyt",
+    "repo": "https://github.com/matisanabria/cyt-landing",
+    "live": "https://www.cytuci.com",
+    "tech": ["astro", "tailwindcss", "php", "laravel"]
+  },
+  {
+    "id": "onbarber",
     "repo": "https://github.com/matisanabria/onbarber-web",
     "live": "https://onbarber.com.py",
-    "year": "2026",
-    "col": "col-7"
+    "tech": ["astro", "react", "tailwindcss", "php", "laravel", "mariadb"]
   },
   {
-    "img": "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/barbman-image.webp",
+    "id": "barbman",
     "repo": "https://github.com/matisanabria/barbman",
-    "year": "2025",
-    "col": "col-5"
+    "tech": ["java", "sqlite", "hibernate", "flyway", "maven"]
   },
   {
-    "img": "",
-    "year": "2026",
-    "col": "col-5"
-  },
-  {
-    "img": "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/msystem-image.webp",
-    "year": "2026",
-    "col": "col-7"
+    "id": "msystem",
+    "tech": ["php","codeigniter", "mysql", "cloudflare"]
   }
 ]

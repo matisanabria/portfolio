@@ -1,11 +1,10 @@
 ---
 interface Props {
-  t: { projects: string; experience: string; about: string; contact: string; cv: string };
+  t: { projects: string; experience: string; about: string; contact: string; cv: string; cvUrl: string };
   lang: "es" | "en";
 }
 
 const { t, lang } = Astro.props;
-const cvUrl = "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria.pdf";
 
 const links = [
   {
@@ -58,30 +57,54 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
         <span class="whitespace-nowrap overflow-hidden max-w-[100px] [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-7px]">{l.label}</span>
       </a>
     ))}
+    <!-- Language switcher -->
+    <div class="relative ml-1 flex-shrink-0" id="lang-switcher">
+      <button
+        id="lang-trigger"
+        aria-haspopup="true"
+        aria-expanded="false"
+        class="flex items-center gap-[5px] px-[9px] py-[7px] rounded-full font-mono text-[11px] tracking-[0.06em] text-ink hover:bg-[rgba(255,255,255,.07)] transition-colors duration-200 cursor-pointer"
+      >
+        <span class="text-muted text-[9px] tracking-[0.08em]">{lang === "es" ? "PY" : "US"}</span>
+        <span>{lang.toUpperCase()}</span>
+        <svg id="lang-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="[transition:rotate_200ms_ease]"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
 
+      <div
+        id="lang-menu"
+        class="hidden absolute right-0 top-[calc(100%+10px)] bg-[rgba(18,21,28,.97)] [backdrop-filter:blur(20px)] border border-[rgba(255,255,255,.10)] rounded-[14px] py-[5px] shadow-[0_8px_32px_rgba(0,0,0,.5)] min-w-[190px] z-50"
+      >
+        <a href="/" class="flex items-center gap-3 px-3 py-[9px] hover:bg-[rgba(255,255,255,.06)] transition-colors duration-150 rounded-[9px] mx-[5px]">
+          <span class="font-mono text-[9px] text-muted/70 bg-[rgba(255,255,255,.08)] rounded-[4px] px-[5px] py-[2px] min-w-[22px] text-center">PY</span>
+          <span class="flex flex-col flex-1 min-w-0">
+            <span class="font-mono text-[11px] text-ink font-semibold leading-none mb-[3px]">ES</span>
+            <span class="text-[10px] text-muted leading-none">Español (Paraguay)</span>
+          </span>
+          {lang === "es" && (
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent flex-shrink-0"><path d="M20 6L9 17l-5-5"/></svg>
+          )}
+        </a>
+        <a href="/en" class="flex items-center gap-3 px-3 py-[9px] hover:bg-[rgba(255,255,255,.06)] transition-colors duration-150 rounded-[9px] mx-[5px]">
+          <span class="font-mono text-[9px] text-muted/70 bg-[rgba(255,255,255,.08)] rounded-[4px] px-[5px] py-[2px] min-w-[22px] text-center">US</span>
+          <span class="flex flex-col flex-1 min-w-0">
+            <span class="font-mono text-[11px] text-ink font-semibold leading-none mb-[3px]">EN</span>
+            <span class="text-[10px] text-muted leading-none">English (US)</span>
+          </span>
+          {lang === "en" && (
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent flex-shrink-0"><path d="M20 6L9 17l-5-5"/></svg>
+          )}
+        </a>
+      </div>
+    </div>
     <a
-      class="ml-1 inline-flex items-center gap-2 bg-accent text-[#0A1A1F] px-4 py-[9px] rounded-full text-[13.5px] font-semibold [transition:transform_.2s_ease,background_.2s_ease,padding_.6s_ease] whitespace-nowrap flex-shrink-0 hover:bg-[color-mix(in_oklab,var(--color-accent)_85%,#fff)] hover:-translate-y-px group-data-[collapsed]:px-[11px]"
-      href={cvUrl}
+      class="ml-1 inline-flex items-center gap-2 bg-accent text-[#0A1A1F] px-4 py-[9px] rounded-full text-[13.5px] font-semibold [transition:translate_.2s_ease,background_.2s_ease,padding_.6s_ease] whitespace-nowrap flex-shrink-0 hover:bg-[color-mix(in_oklab,var(--color-accent)_85%,#fff)] hover:-translate-y-px group-data-[collapsed]:px-[11px]"
+      href={t.cvUrl}
       download
       title={t.cv}
     >
       <span class="flex items-center flex-shrink-0" set:html={cvIcon} />
       <span class="whitespace-nowrap overflow-hidden max-w-[120px] [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-8px]">{t.cv}</span>
     </a>
-
-    <!-- Language switcher -->
-    <div class="ml-1 flex items-center gap-[2px] flex-shrink-0">
-      <a
-        href="/"
-        class:list={["px-[9px] py-[7px] rounded-full font-mono text-[11px] tracking-[0.06em] transition-colors duration-200", lang === "es" ? "text-ink bg-[rgba(255,255,255,.10)]" : "text-muted hover:text-ink"]}
-        aria-label="Español"
-      >ES</a>
-      <a
-        href="/en"
-        class:list={["px-[9px] py-[7px] rounded-full font-mono text-[11px] tracking-[0.06em] transition-colors duration-200", lang === "en" ? "text-ink bg-[rgba(255,255,255,.10)]" : "text-muted hover:text-ink"]}
-        aria-label="English"
-      >EN</a>
-    </div>
   </nav>
 </div>
 
@@ -118,6 +141,28 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
 
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  const trigger = document.getElementById("lang-trigger")!;
+  const menu = document.getElementById("lang-menu")!;
+  const chevron = document.getElementById("lang-chevron")!;
+
+  function openMenu() {
+    menu.classList.remove("hidden");
+    trigger.setAttribute("aria-expanded", "true");
+    chevron.style.rotate = "180deg";
+  }
+  function closeMenu() {
+    menu.classList.add("hidden");
+    trigger.setAttribute("aria-expanded", "false");
+    chevron.style.rotate = "0deg";
+  }
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.contains("hidden") ? openMenu() : closeMenu();
+  });
+  document.addEventListener("click", closeMenu);
+  menu.addEventListener("click", (e) => e.stopPropagation());
 
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {

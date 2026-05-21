@@ -17,9 +17,9 @@ import projectsBase from "../data/projects.json";
 import projectsI18n from "../i18n/es/projects.json";
 import experienceData from "../i18n/es/experience.json";
 
-const projects = (projectsBase as ProjectData[]).map((p, i) => ({
+const projects = (projectsBase as ProjectData[]).map((p) => ({
   ...p,
-  ...(projectsI18n as ProjectTranslation[])[i],
+  ...(projectsI18n as ProjectTranslation[]).find((t) => t.id === p.id),
 })) as Project[];
 const experience = experienceData as ExpEntry[];
 ---
@@ -47,7 +47,7 @@ const experience = experienceData as ExpEntry[];
     <Projects items={projects} t={ui.projects} />
     <Experience items={experience} t={ui.experience} />
     <About t={ui.about} />
-    <Contact />
+    <Contact t={ui.contact} />
   </main>
 
   <Footer t={ui.footer} />

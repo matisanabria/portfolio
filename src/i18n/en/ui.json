@@ -4,14 +4,15 @@
     "experience": "Experience",
     "about": "About",
     "contact": "Contact",
-    "cv": "Download CV"
+    "cv": "Download CV",
+    "cvUrl": "https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/portfolio/cv-matias-sanabria-en.pdf"
   },
   "hero": {
     "greeting": "Hi, I'm ",
     "italicName": "Matias Sanabria",
-    "sub": "Web development and systems for businesses that want to grow.",
-    "cta1": "View work",
-    "cta2": "Schedule a call"
+    "sub": "Full Stack Developer specialized in Laravel, with experience in Enterprise Systems, focused on building scalable solutions.",
+    "cta1": "View projects",
+    "cta2": "Schedule a meeting"
   },
   "stack": {
     "label": "STACK & TOOLS",
@@ -21,7 +22,6 @@
     "sectionLabel": "01 / PROJECTS",
     "heading": "Recent",
     "headingItalic": "projects",
-    "sub": "A small sample. For full case studies, let's talk.",
     "repo": "Repo",
     "private": "Private",
     "live": "Web ↗"
@@ -29,27 +29,48 @@
   "experience": {
     "sectionLabel": "02 / EXPERIENCE",
     "heading": "My",
-    "headingItalic": "experience",
-    "sub": "From early projects to current freelance work."
+    "headingItalic": "experience"
   },
   "about": {
-    "sectionLabel": "03 / ABOUT",
+    "sectionLabel": "03 / ABOUT ME",
     "heading": "A bit of",
     "headingItalic": "context",
     "bio": [
-      "I'm <strong>Matias Sanabria</strong>, <strong>19 years old</strong>, working as a freelance developer from Paraguay. I build systems and websites for businesses that want to grow.",
-      "I'm currently studying <em>Computer Engineering</em> at Universidad Católica, learning systems analysis, software programming and design, and teamwork.",
-      "Self-taught in PHP and Laravel, over the years I've built personal and client projects ranging from websites to complex management systems."
+      "I'm <strong>Matias Sanabria</strong>, I'm <strong>19 years old</strong> and I work as a freelance developer based in Paraguay. I build systems and websites for businesses looking to grow.",
+      "I'm studying <em>Computer Engineering</em> at Universidad Católica, where I deepen my knowledge in systems analysis, development methodologies, and software design.",
+      "I'm self-taught in PHP and Laravel, and over time I've built projects for both local and international clients."
     ],
     "stackLabel": "STACK",
     "stack": [
-      { "area": "Backend", "name": "Laravel", "sub": "PHP framework", "detail": "APIs, dashboards, business logic", "tags": ["Filament", "Livewire", "Sanctum"] },
-      { "area": "Frontend", "name": "Astro", "sub": "Web framework", "detail": "Fast sites, SEO-friendly", "tags": ["Astro", "Astro Islands", "Tailwind"] },
-      { "area": "UI", "name": "React", "sub": "UI library", "detail": "Dashboards, interactive apps", "tags": ["React", "TypeScript", "Vite"] },
-      { "area": "Infra", "name": "Cloudflare", "sub": "Edge platform", "detail": "Deploy, storage, domains", "tags": ["Pages", "Workers", "R2"] }
+      { "area": "Backend", "name": "Backend Engineering", "sub": "Business Logic, APIs", "detail": "Business architecture, admin panels, and workflow automation.", "tags": ["Laravel", "REST APIs", "Auth"] },
+      { "area": "Frontend", "name": "Frontend Systems", "sub": "Interactive Interfaces", "detail": "Fast, UX-focused interfaces optimized for performance and SEO.", "tags": ["Astro", "React", "Tailwind"] },
+      { "area": "Infra", "name": "Infrastructure", "sub": "Deployment & Edge Services", "detail": "Application deployment, networking, tunneling, and distributed cloud services.", "tags": ["Docker", "Cloudflare", "VPS"] },
+      { "area": "DB", "name": "Database Design", "sub": "Data Modeling & Persistence", "detail": "Scalable schema design, entity relationships, and query optimization.", "tags": ["PostgreSQL", "MySQL", "JPA"] }
     ]
   },
+"contact": {
+    "sectionLabel": "04 / CONTACT",
+    "heading": "Let's build something",
+    "headingItalic": "together",
+    "sub": "I build software, systems, and infrastructure for projects. If you have an idea or a project in mind, let's talk.",
+    "stepsLabel": "WHAT HAPPENS NEXT?",
+    "steps": ["You tell me about your project", "I'll get back to you within 24h", "A quick call to align", "We define how to work together"],
+    "directLabel": "Prefer to write directly?",
+    "email": "contacto@matisanabria.me",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "you@email.com",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me what you need, features, goals, deadlines…",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "success": "Message sent! I'll get back to you within 24h.",
+      "disclaimer": "By submitting, you agree that I may contact you regarding your inquiry."
+    }
+  },
   "footer": {
+    "footerName": "Matias Sanabria",
     "cta": "Got a project in mind?",
     "tagline": "Freelance developer from Encarnación, Paraguay. Available for new projects.",
     "navLabel": "NAVIGATION",
@@ -61,15 +82,14 @@
       { "label": "Contact", "href": "#contact" }
     ],
     "socialLinks": [
-      { "label": "GitHub ↗", "href": "https://github.com/matisanabria" },
-      { "label": "LinkedIn ↗", "href": "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" }
+      { "label": "GitHub", "href": "https://github.com/matisanabria" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/mat%C3%ADas-sanabria-fern%C3%A1ndez-34b4882a5/" }
     ],
     "contactLinks": [
       { "label": "contacto@matisanabria.me", "href": "mailto:contacto@matisanabria.me" },
-      { "label": "Form ↗", "href": "#contact" },
+      { "label": "Form", "href": "#contact" },
       { "label": "Encarnación, PY", "href": "#" }
     ],
-    "copyright": "MATI SANABRIA — ENCARNACIÓN, PARAGUAY",
-    "available": "AVAILABLE FOR PROJECTS · GMT−3"
+    "copyright": "MATI SANABRIA"
   }
 }

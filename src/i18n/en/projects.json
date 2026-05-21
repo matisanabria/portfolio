@@ -1,22 +1,26 @@
 [
   {
-    "name": "OnBarber Website",
-    "tech": "Laravel · Astro · React · MariaDB",
-    "desc": "Landing page and booking platform for a barbershop. REST API, island-based frontend. Live in Encarnación."
+    "id": "fcyt",
+    "name": "Web for FaCyT",
+    "type": "Landing & Portal",
+    "desc": "Landing page, news portal, and photo gallery for the Faculty of Science and Technology at Universidad Católica campus Itapúa. Built with Astro and Tailwind CSS. The backoffice used by the Student Council to manage news and photos is built with Laravel and Filament."
   },
   {
+    "id": "onbarber",
+    "name": "Web for ONBarber",
+    "type": "Landing & Booking",
+    "desc": "Landing page and appointment booking system for a barbershop in Encarnación, Paraguay called ONBarber. REST API built with Laravel, frontend with Astro and React."
+  },
+  {
+    "id": "barbman",
     "name": "Barbman",
-    "tech": "Java 17 · SQLite · Hibernate",
-    "desc": "Management system for barbershops. Point of sale, clients, stock and reports. In use since 2025."
+    "type": "Desktop Application",
+    "desc": "Business management system for small businesses. Includes POS, customer and employee management, inventory management, reporting, payroll administration, cash register management, and appointment scheduling. Built with Java 17 and JavaFX."
   },
   {
-    "name": "New Project",
-    "tech": "",
-    "desc": ""
-  },
-  {
+    "id": "msystem",
     "name": "POS MSystem",
-    "tech": "CodeIgniter 4 · MySQL",
-    "desc": "Point of sale and inventory management for a phone store. Custom-adapted from Open Source Point of Sale."
+    "type": "Point of Sale",
+    "desc": "Point of sale, inventory management, warranty tracking, technical service records, and reporting for a mobile phone store in Asunción, Paraguay. Uses Cloudflare Tunnel for remote multi-location access, currently deployed across two branches. Forked from OpenSourcePOS."
   }
 ]

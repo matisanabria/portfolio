@@ -1,14 +1,16 @@
 export interface ProjectData {
+  id: string;
   img: string;
   year: string;
-  col: "col-7" | "col-5" | "col-12";
+  tech: string[];
   repo?: string;
   live?: string;
 }
 
 export interface ProjectTranslation {
+  id: string;
   name: string;
-  tech: string;
+  type: string;
   desc: string;
 }
 

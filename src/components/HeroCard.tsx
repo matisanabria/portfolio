@@ -58,7 +58,8 @@ export default function HeroCard({ className }: { className?: string }) {
             <img
               src="/hero.webp"
               alt="Mati Sanabria"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-top select-none"
+              draggable={false}
               loading="eager"
               decoding="async"
             />
