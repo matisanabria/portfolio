@@ -56,7 +56,7 @@ export default function HeroCard({ className }: { className?: string }) {
           {/* imagen — layer medio */}
           <Layer z={35} className="absolute inset-0 rounded-[20px] overflow-hidden">
             <img
-              src="/hero.webp"
+              src="https://pub-35ad8d60b43c4e38adcab3857e0a55b8.r2.dev/hero.webp"
               alt="Mati Sanabria"
               className="w-full h-full object-cover object-top select-none"
               draggable={false}
