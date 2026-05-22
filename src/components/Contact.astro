@@ -45,7 +45,7 @@ const { t } = Astro.props;
 
         <!-- Next steps card -->
         <div class="next-card border border-[var(--line)] rounded-[18px] p-[20px_22px] bg-[rgba(255,255,255,.04)] mb-[22px]">
-          <h4 class="font-mono text-[11px] tracking-[0.16em] uppercase text-muted m-0 mb-[14px] font-medium">{t.stepsLabel}</h4>
+          <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase text-muted m-0 mb-[14px] font-medium">{t.stepsLabel}</h3>
           <ol>
             {t.steps.map((step) => (
               <li class="grid grid-cols-[22px_1fr] gap-3 items-center text-[14px] text-ink">{step}</li>
@@ -82,7 +82,7 @@ const { t } = Astro.props;
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
             </span>
             <span class="flex flex-col leading-[1.2] min-w-0 flex-1">
-              <span class="font-mono text-[9.5px] tracking-[0.14em] text-muted">GITHUB</span>
+              <span class="font-mono text-[9.5px] tracking-[0.14em] text-ink2">GITHUB</span>
               <span class="text-[12px] font-medium mt-[2px] whitespace-nowrap overflow-hidden text-ellipsis">@matisanabria</span>
             </span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-muted flex-shrink-0 [transition:color_.2s,translate_.2s] group-hover:text-accent group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -98,7 +98,7 @@ const { t } = Astro.props;
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.5C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>
             </span>
             <span class="flex flex-col leading-[1.2] min-w-0 flex-1">
-              <span class="font-mono text-[9.5px] tracking-[0.14em] text-muted">LINKEDIN</span>
+              <span class="font-mono text-[9.5px] tracking-[0.14em] text-ink2">LINKEDIN</span>
               <span class="text-[12px] font-medium mt-[2px] whitespace-nowrap overflow-hidden text-ellipsis">Matías Sanabria</span>
             </span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-muted flex-shrink-0 [transition:color_.2s,translate_.2s] group-hover:text-accent group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>

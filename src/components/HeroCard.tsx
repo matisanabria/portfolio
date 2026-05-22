@@ -62,6 +62,8 @@ export default function HeroCard({ className }: { className?: string }) {
               draggable={false}
               loading="eager"
               decoding="async"
+              // @ts-ignore
+              fetchpriority="high"
             />
           </Layer>
 

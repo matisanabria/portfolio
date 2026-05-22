@@ -119,7 +119,7 @@ export default function ContactForm({ t }: { t: FormT }) {
         {state === "loading" ? t.submitting : t.submit}
       </button>
 
-      <p className="text-center text-[12px] text-muted mt-[14px]">
+      <p className="text-center text-[12px] text-ink2 mt-[14px]">
         {t.disclaimer}
       </p>
     </form>

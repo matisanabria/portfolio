@@ -1,5 +1,5 @@
 ---
-import BackgroundBeams from "./BackgroundBeams.tsx";
+import BackgroundBeams from "./BackgroundBeams.astro";
 import HeroCard from "./HeroCard.tsx";
 
 interface Props {
@@ -18,7 +18,7 @@ const { t } = Astro.props;
 ---
 
 <header id="vanta-hero" class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px] [contain:paint]">
-  <BackgroundBeams client:only="react" />
+  <BackgroundBeams />
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
     <div class="relative z-10 grid grid-cols-[1.05fr_.95fr] gap-[60px] items-center max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
 
