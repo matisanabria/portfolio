@@ -1,17 +1,17 @@
 ---
 export const prerender = true;
 
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
-import BackgroundBeams from "../components/BackgroundBeams.astro";
-import ui from "../i18n/es/ui.json";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import BackgroundBeams from "../../components/BackgroundBeams.astro";
+import ui from "../../i18n/en/ui.json";
 
 const t = ui.notFound;
 const nav = ui.nav;
 ---
 
-<Layout title="404 — Matias Sanabria" lang="es">
-  <Navbar t={nav} lang="es" />
+<Layout title="404 — Mati Sanabria" lang="en">
+  <Navbar t={nav} lang="en" />
 
   <main class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <BackgroundBeams />
@@ -28,7 +28,7 @@ const nav = ui.nav;
       </p>
 
       <a
-        href="/"
+        href="/en"
         class="group inline-flex items-center gap-[10px] px-[22px] py-[14px] rounded-full text-[14.5px] font-medium tracking-[-0.005em] bg-ink text-bg [transition:translate_200ms_ease,background_200ms_ease] hover:bg-[#e0e0e0] hover:-translate-y-px"
       >
         {t.cta}

@@ -91,5 +91,12 @@
       { "label": "Encarnación, PY", "href": "#" }
     ],
     "copyright": "MATI SANABRIA"
+  },
+  "notFound": {
+    "label": "404",
+    "heading": "Page not",
+    "headingItalic": "found",
+    "sub": "Looks like this page doesn't exist.",
+    "cta": "← Back to home"
   }
 }

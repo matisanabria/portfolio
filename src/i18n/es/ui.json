@@ -91,5 +91,12 @@
     ],
     "copyright": "MATI SANABRIA",
     "available": "GMT−3"
+  },
+  "notFound": {
+    "label": "404",
+    "heading": "Página no",
+    "headingItalic": "encontrada",
+    "sub": "Parece que esta página no existe.",
+    "cta": "← Volver al inicio"
   }
 }
