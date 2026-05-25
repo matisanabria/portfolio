@@ -58,7 +58,7 @@ export default function ContactForm({ t }: { t: FormT }) {
     >
       {state === "success" && (
         <div className="px-[18px] py-4 rounded-[12px] mb-[18px] bg-[color-mix(in_oklab,var(--color-accent2)_20%,transparent)] text-accent border border-[color-mix(in_oklab,var(--color-accent)_20%,transparent)] text-[14px]">
-          ✓ {t.success}
+          {t.success}
         </div>
       )}
 

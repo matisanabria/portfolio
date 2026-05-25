@@ -62,11 +62,11 @@
       "namePlaceholder": "Your name",
       "emailPlaceholder": "you@email.com",
       "messageLabel": "Message",
-      "messagePlaceholder": "Tell me what you need, features, goals, deadlines…",
+      "messagePlaceholder": "Tell me what you need or any questions you have.",
       "submit": "Send message",
       "submitting": "Sending…",
-      "success": "Message sent! I'll get back to you within 24h.",
-      "disclaimer": "By submitting, you agree that I may contact you regarding your inquiry."
+      "success": "Message sent!",
+      "disclaimer": "By submitting, you agree that I may contact you through the email you provide."
     }
   },
   "footer": {

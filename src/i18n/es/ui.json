@@ -62,11 +62,11 @@
       "namePlaceholder": "Tu nombre",
       "emailPlaceholder": "tu@email.com",
       "messageLabel": "Mensaje",
-      "messagePlaceholder": "Contame qué necesitás — funcionalidades, objetivos, plazos…",
+      "messagePlaceholder": "Contame qué necesitás o cualquier consulta que tengas.",
       "submit": "Enviar mensaje",
       "submitting": "Enviando…",
-      "success": "¡Mensaje enviado! Te respondo en menos de 24h.",
-      "disclaimer": "Al enviar, aceptás que te contacte sobre tu consulta."
+      "success": "¡Mensaje enviado!",
+      "disclaimer": "Al enviar, aceptás que te contacte a través del correo que proporciones."
     }
   },
   "footer": {
