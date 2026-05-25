@@ -24,7 +24,7 @@
     "headingItalic": "projects",
     "repo": "Repo",
     "private": "Private",
-    "live": "Web ↗"
+    "live": "Web"
   },
   "experience": {
     "sectionLabel": "02 / EXPERIENCE",
@@ -77,7 +77,8 @@
     "socialLabel": "SOCIAL",
     "contactLabel": "CONTACT",
     "navLinks": [
-      { "label": "Work", "href": "#work" },
+      { "label": "Projects", "href": "#work" },
+      { "label": "Experience", "href": "#experience" },
       { "label": "About", "href": "#about" },
       { "label": "Contact", "href": "#contact" }
     ],
@@ -87,8 +88,7 @@
     ],
     "contactLinks": [
       { "label": "contacto@matisanabria.me", "href": "mailto:contacto@matisanabria.me" },
-      { "label": "Form", "href": "#contact" },
-      { "label": "Encarnación, PY", "href": "#" }
+      { "label": "Form", "href": "#contact" }
     ],
     "copyright": "MATI SANABRIA"
   },

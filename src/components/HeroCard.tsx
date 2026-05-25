@@ -48,13 +48,13 @@ export default function HeroCard({ className }: { className?: string }) {
         <div
           ref={ref}
           style={{ transformStyle: "preserve-3d" }}
-          className="relative aspect-[4/4.3] max-[960px]:aspect-[4/2.6] transition-transform duration-200 ease-linear"
+          className="relative aspect-[4/4.3] max-[960px]:aspect-[4/2.6] max-[640px]:aspect-[3/3.8] transition-transform duration-200 ease-linear"
           onMouseMove={onMove}
           onMouseEnter={() => setEntered(true)}
           onMouseLeave={onLeave}
         >
           {/* imagen — layer medio */}
-          <Layer z={35} className="absolute inset-0 rounded-[20px] overflow-hidden">
+          <Layer z={35} className="absolute inset-0 rounded-[20px] max-[640px]:rounded-t-[20px] max-[640px]:rounded-b-none overflow-hidden">
             <img
               src="https://pub-35ad8d60b43c4e38adcab3857e0a55b8.r2.dev/hero.webp"
               alt="Mati Sanabria"
@@ -64,6 +64,8 @@ export default function HeroCard({ className }: { className?: string }) {
               decoding="async"
               // @ts-ignore
               fetchpriority="high"
+              style={{ WebkitUserDrag: "none" as any, WebkitTouchCallout: "none" as any }}
+              onContextMenu={(e) => e.preventDefault()}
             />
           </Layer>
 

@@ -17,7 +17,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<header id="vanta-hero" class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px] [contain:paint]">
+<header id="vanta-hero" class="pt-[140px] pb-[80px] relative max-[960px]:pt-[120px] max-[640px]:pt-[90px] max-[640px]:pb-0 [contain:paint]">
   <BackgroundBeams />
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
     <div class="relative z-10 grid grid-cols-[1.05fr_.95fr] gap-[60px] items-center max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
@@ -28,13 +28,13 @@ const { t } = Astro.props;
           id="hero-title"
           data-greeting={t.greeting}
           data-italic={t.italicName}
-          class="text-[clamp(44px,6.4vw,88px)] leading-[.98] tracking-[-0.035em] font-semibold mb-6 text-ink text-balance"
+          class="text-[clamp(44px,6.4vw,88px)] leading-[.98] tracking-[-0.035em] font-semibold mb-6 text-ink text-balance max-[640px]:text-[44px] max-[640px]:leading-[0.97]"
         >
           <span id="hero-g"></span><br />
           <span id="hero-italic-wrap" class="relative font-serif italic text-[1.05em] tracking-[-0.02em] text-ink inline-block translate-y-[0.06em] whitespace-nowrap opacity-0 after:content-[''] after:absolute after:[left:-0.06em] after:[right:-0.06em] after:[bottom:-0.0em] after:[height:0.18em] after:bg-accent after:opacity-0 after:-z-10 after:rounded-sm after:transition-opacity after:duration-500"><span id="hero-i"></span></span><span id="hero-dot" class="opacity-0 transition-opacity duration-300">.</span>
         </h1>
 
-        <p class="text-[18px] text-muted max-w-[520px] mb-8 leading-[1.6]">
+        <p class="text-[18px] text-muted max-w-[520px] mb-8 leading-[1.6] max-[640px]:text-[15px] max-[640px]:mb-6">
           {t.sub}<br />
         </p>
 
@@ -55,7 +55,9 @@ const { t } = Astro.props;
       </div>
 
       <!-- Right: visual -->
-      <HeroCard client:load />
+      <div class="max-[640px]:mt-7">
+        <HeroCard client:load />
+      </div>
 
     </div>
   </div>

@@ -44,7 +44,7 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
       aria-label="Ir al inicio"
     >
       <img src="https://pub-35ad8d60b43c4e38adcab3857e0a55b8.r2.dev/avatar.webp" alt="" width="30" height="30" draggable="false" class="w-[30px] h-[30px] rounded-lg object-cover flex-shrink-0" />
-      <span class="font-semibold text-[14px] tracking-[-0.01em] whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-10px]">Mati Sanabria</span>
+      <span class="font-semibold text-[14px] tracking-[-0.01em] whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-10px]">Matias Sanabria</span>
     </a>
 
     {links.map((l) => (
@@ -57,6 +57,19 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
         <span class="whitespace-nowrap overflow-hidden max-w-[100px] [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-7px]">{l.label}</span>
       </a>
     ))}
+    <!-- Hamburger (mobile only) -->
+    <button
+      id="nav-burger"
+      aria-label="Abrir menú"
+      class="hidden max-[640px]:flex items-center justify-center w-9 h-9 rounded-full border border-[rgba(255,255,255,.10)] bg-[rgba(255,255,255,.06)] cursor-pointer flex-shrink-0 ml-1"
+    >
+      <svg width="15" height="12" viewBox="0 0 15 12" fill="none" aria-hidden="true">
+        <rect width="15" height="1.5" rx="1" fill="currentColor"/>
+        <rect y="5.25" width="15" height="1.5" rx="1" fill="currentColor"/>
+        <rect y="10.5" width="15" height="1.5" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+
     <!-- Language switcher -->
     <div class="relative ml-1 flex-shrink-0" id="lang-switcher">
       <button
@@ -65,7 +78,12 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
         aria-expanded="false"
         class="flex items-center gap-[5px] px-[9px] py-[7px] rounded-full font-mono text-[11px] tracking-[0.06em] text-ink hover:bg-[rgba(255,255,255,.07)] transition-colors duration-200 cursor-pointer"
       >
-        <span class="text-muted text-[9px] tracking-[0.08em]">{lang === "es" ? "PY" : "US"}</span>
+        <img
+          src={lang === "es" ? "https://flagcdn.com/w40/py.png" : "https://flagcdn.com/w40/us.png"}
+          alt={lang === "es" ? "PY" : "US"}
+          width="20" height="14"
+          class="rounded-[3px] object-cover flex-shrink-0"
+        />
         <span>{lang.toUpperCase()}</span>
         <svg id="lang-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="[transition:rotate_200ms_ease]"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -75,7 +93,7 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
         class="hidden absolute right-0 top-[calc(100%+10px)] bg-[rgba(18,21,28,.97)] [backdrop-filter:blur(20px)] border border-[rgba(255,255,255,.10)] rounded-[14px] py-[5px] shadow-[0_8px_32px_rgba(0,0,0,.5)] min-w-[190px] z-50"
       >
         <a href="/" class="flex items-center gap-3 px-3 py-[9px] hover:bg-[rgba(255,255,255,.06)] transition-colors duration-150 rounded-[9px] mx-[5px]">
-          <span class="font-mono text-[9px] text-muted/70 bg-[rgba(255,255,255,.08)] rounded-[4px] px-[5px] py-[2px] min-w-[22px] text-center">PY</span>
+          <img src="https://flagcdn.com/w40/py.png" alt="PY" width="22" height="15" class="rounded-[3px] object-cover flex-shrink-0" />
           <span class="flex flex-col flex-1 min-w-0">
             <span class="font-mono text-[11px] text-ink font-semibold leading-none mb-[3px]">ES</span>
             <span class="text-[10px] text-muted leading-none">Español (Paraguay)</span>
@@ -85,7 +103,7 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
           )}
         </a>
         <a href="/en" class="flex items-center gap-3 px-3 py-[9px] hover:bg-[rgba(255,255,255,.06)] transition-colors duration-150 rounded-[9px] mx-[5px]">
-          <span class="font-mono text-[9px] text-muted/70 bg-[rgba(255,255,255,.08)] rounded-[4px] px-[5px] py-[2px] min-w-[22px] text-center">US</span>
+          <img src="https://flagcdn.com/w40/us.png" alt="US" width="22" height="15" class="rounded-[3px] object-cover flex-shrink-0" />
           <span class="flex flex-col flex-1 min-w-0">
             <span class="font-mono text-[11px] text-ink font-semibold leading-none mb-[3px]">EN</span>
             <span class="text-[10px] text-muted leading-none">English (US)</span>
@@ -97,7 +115,7 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
       </div>
     </div>
     <a
-      class="ml-1 inline-flex items-center gap-2 bg-accent text-[#0A1A1F] px-4 py-[9px] rounded-full text-[13.5px] font-semibold [transition:translate_.2s_ease,background_.2s_ease,padding_.6s_ease] whitespace-nowrap flex-shrink-0 hover:bg-[color-mix(in_oklab,var(--color-accent)_85%,#fff)] hover:-translate-y-px group-data-[collapsed]:px-[11px]"
+      class="ml-1 max-[640px]:hidden inline-flex items-center gap-2 bg-accent text-[#0A1A1F] px-4 py-[9px] rounded-full text-[13.5px] font-semibold [transition:translate_.2s_ease,background_.2s_ease,padding_.6s_ease] whitespace-nowrap flex-shrink-0 hover:bg-[color-mix(in_oklab,var(--color-accent)_85%,#fff)] hover:-translate-y-px group-data-[collapsed]:px-[11px]"
       href={t.cvUrl}
       download
       title={t.cv}
@@ -106,6 +124,54 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
       <span class="whitespace-nowrap overflow-hidden max-w-[120px] [transition:max-width_.6s_ease,opacity_.45s_ease,margin_.6s_ease] group-data-[collapsed]:max-w-0 group-data-[collapsed]:opacity-0 group-data-[collapsed]:ml-[-8px]">{t.cv}</span>
     </a>
   </nav>
+</div>
+
+<!-- Mobile drawer -->
+<div
+  id="nav-drawer"
+  class="fixed inset-0 z-[200] flex flex-col bg-[#13161C] translate-x-full opacity-0 pointer-events-none [transition:transform_.38s_cubic-bezier(0.16,1,0.3,1),opacity_.3s_ease]"
+>
+  <!-- Top row -->
+  <div class="flex items-center justify-between p-5 pb-0">
+    <a href="/" class="flex items-center gap-[9px] no-underline text-ink" id="drawer-home">
+      <img src="https://pub-35ad8d60b43c4e38adcab3857e0a55b8.r2.dev/avatar.webp" alt="" width="28" height="28" draggable="false" class="w-7 h-7 rounded-lg object-cover flex-shrink-0" />
+      <span class="font-semibold text-[17px] tracking-[-0.01em]">Mati Sanabria</span>
+    </a>
+    <button
+      id="nav-drawer-close"
+      aria-label="Cerrar menú"
+      class="w-9 h-9 rounded-full border border-[rgba(255,255,255,.10)] bg-[rgba(255,255,255,.06)] grid place-items-center cursor-pointer text-ink text-[17px] flex-shrink-0"
+    >✕</button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="flex-1 px-5 mt-9">
+    {links.map((l, i) => (
+      <a
+        href={l.href}
+        class="drawer-link flex items-center justify-between py-[17px] border-b border-[rgba(255,255,255,.10)] no-underline"
+      >
+        <span class="text-[22px] font-semibold tracking-[-0.025em] text-ink">{l.label}</span>
+        <span class="font-mono text-[11px] text-muted">0{i + 1}</span>
+      </a>
+    ))}
+  </nav>
+
+  <!-- Bottom -->
+  <div class="px-5 pb-8 mt-6">
+    <a
+      href={t.cvUrl}
+      download
+      class="drawer-link flex items-center justify-center gap-2 bg-accent text-[#0A1A1F] rounded-[14px] py-[15px] text-[15px] font-bold no-underline mb-[14px]"
+    >
+      <span set:html={cvIcon} />
+      {t.cv}
+    </a>
+    <div class="flex justify-center gap-[18px] font-mono text-[10.5px] text-muted tracking-[.08em]">
+      <a href="https://github.com/matisanabria" target="_blank" rel="noopener noreferrer" class="no-underline text-muted hover:text-ink transition-colors">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/matisanabriaf/" target="_blank" rel="noopener noreferrer" class="no-underline text-muted hover:text-ink transition-colors">LinkedIn ↗</a>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -183,4 +249,32 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
       }
     });
   });
+
+  // Mobile drawer
+  const burger = document.getElementById("nav-burger");
+  const drawer = document.getElementById("nav-drawer")!;
+  const drawerClose = document.getElementById("nav-drawer-close");
+
+  function openDrawer() {
+    drawer.classList.remove("translate-x-full", "opacity-0", "pointer-events-none");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    drawer.classList.add("translate-x-full", "opacity-0", "pointer-events-none");
+    document.body.style.overflow = "";
+  }
+
+  burger?.addEventListener("click", openDrawer);
+  drawerClose?.addEventListener("click", closeDrawer);
+  drawer.querySelectorAll(".drawer-link").forEach((a) => a.addEventListener("click", closeDrawer));
+
+  // Set lang preference cookie when user manually picks a language
+  document.querySelector<HTMLAnchorElement>('#lang-menu a[href="/"]')
+    ?.addEventListener("click", () => {
+      document.cookie = "lang-pref=es; path=/; max-age=31536000; SameSite=Lax";
+    });
+  document.querySelector<HTMLAnchorElement>('#lang-menu a[href="/en"]')
+    ?.addEventListener("click", () => {
+      document.cookie = "lang-pref=en; path=/; max-age=31536000; SameSite=Lax";
+    });
 </script>

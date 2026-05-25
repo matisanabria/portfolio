@@ -28,7 +28,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="contact" class="relative py-[80px]">
+<section id="contact" class="relative py-[80px] max-[640px]:py-[48px]">
   <div class="w-full max-w-[1240px] mx-auto px-8 max-[720px]:px-5">
 
     <div class="grid grid-cols-[.85fr_1.15fr] gap-[60px] items-start max-[960px]:grid-cols-1 max-[960px]:gap-[40px]">
@@ -36,15 +36,15 @@ const { t } = Astro.props;
       <!-- Left: info -->
       <div>
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">{t.sectionLabel}</div>
-        <h2 class="text-[clamp(40px,5.5vw,72px)] font-semibold tracking-[-0.03em] text-ink leading-none mt-[14px] mb-0">
+        <h2 class="text-[clamp(40px,5.5vw,72px)] font-semibold tracking-[-0.03em] text-ink leading-none mt-[14px] mb-0 max-[640px]:text-[44px]">
           {t.heading} <span class="font-serif italic text-accent">{t.headingItalic}</span>.
         </h2>
-        <p class="text-muted max-w-[34ch] text-[15.5px] mt-4 mb-7 leading-[1.6]">
+        <p class="text-muted max-w-[34ch] text-[15.5px] mt-4 mb-7 leading-[1.6] max-[640px]:text-[14px] max-[640px]:mb-5">
           {t.sub}
         </p>
 
         <!-- Next steps card -->
-        <div class="next-card border border-[var(--line)] rounded-[18px] p-[20px_22px] bg-[rgba(255,255,255,.04)] mb-[22px]">
+        <div class="next-card border border-[var(--line)] rounded-[18px] p-[20px_22px] bg-[rgba(255,255,255,.04)] mb-[22px] max-[640px]:mb-[18px]">
           <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase text-muted m-0 mb-[14px] font-medium">{t.stepsLabel}</h3>
           <ol>
             {t.steps.map((step) => (
