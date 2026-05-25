@@ -268,17 +268,4 @@ const cvIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
   drawerClose?.addEventListener("click", closeDrawer);
   drawer.querySelectorAll(".drawer-link").forEach((a) => a.addEventListener("click", closeDrawer));
 
-  // Set lang preference cookie when user manually picks a language
-  document.querySelector<HTMLAnchorElement>('#lang-menu a[href="/"]')
-    ?.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.cookie = "lang-pref=es; path=/; max-age=31536000; SameSite=Lax";
-      window.location.href = "/";
-    });
-  document.querySelector<HTMLAnchorElement>('#lang-menu a[href="/en"]')
-    ?.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.cookie = "lang-pref=en; path=/; max-age=31536000; SameSite=Lax";
-      window.location.href = "/en";
-    });
 </script>
